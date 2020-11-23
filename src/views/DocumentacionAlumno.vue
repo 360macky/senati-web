@@ -1,6 +1,158 @@
 <template>
     <div>
-        DocumentacionAlumno page
+            <div class="d-flex">
+        <div id="sidebar-container" class="bg-primary">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logotipo de Senati" class="img-fluid mx-auto d-block" width="200px">
+            </div>
+            <div class="user m-3 bg-info rounded-pill">
+                <li>
+                    <a href="#" class=" text-light">
+                        <img style="padding: 10px 5px;" src=" img/user.png " alt="Foto de Perfil" class="img-fluid avatar mr-2"> 001214638
+                    </a>
+                </li>
+            </div>
+
+            <div class="menu">
+                <a href="inicio.html" class="d-block text-light p-3"><i class="fas fa-home mr-2"></i>Inicio</a>
+                <a href="perfil.html" class="d-block text-light p-3"><i class="fas fa-user mr-2"></i>Perfil</a>
+                <a href="documentacion_alumno.html" class="selected d-block text-light p-3"><i class="far fa-file mr-2"></i>Documentación</a>
+                <a href="#" class="d-block text-light p-3"><i class="far fa-calendar mr-2"></i>Calendario</a>
+
+                <a href="#" class="d-block text-light p-3"><i class="fas fa-sign-out-alt mr-2"></i>Cerrar sesión</a>
+            </div>
+        </div>
+
+        <div class="w-100">
+
+            <div id="content">
+                <section>
+
+                    <div class="container py-3">
+                        <div>
+                            <div class="col-lg-12">
+                                <h1>Documentación</h1>
+                                <p class="text-muted">Agregue los documentos correspondientes</p>
+                            </div>
+                            <div style=" color: #721c24;
+                            background-color: #f8d7da;
+                            border-color: #f5c6cb; position: relative;padding: 0.75rem 1.25rem; margin-bottom: 1rem;    border: 1px solid transparent;border-radius: 0.25rem; flex-wrap: wrap;-ms-flex-wrap: wrap;">
+
+                                Plazo máximo para subir documentos al sistema: 6 de enero del 2021
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h4>DNI</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="exampleFormControlFile1">Agregue su DNI</label>
+                                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+
+                                                        <ul class="list-group mt-3">
+                                                            <li class="list-group-item">Foto clara y en alta resolución</li>
+                                                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                                                            <li class="list-group-item">Morbi leo risus</li>
+                                                        </ul>
+
+                                                        <button type="submit" class="btn btn-info btn-lg mt-3">Enviar</button>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="card">
+                                                            <img src="img/img1.jpg" class="card-img-top" alt="...">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h4>Certificado de estudios</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="exampleFormControlFile1">Agregue su certificado</label>
+                                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+
+                                                        <ul class="list-group mt-3">
+                                                            <li class="list-group-item">Cras justo odio</li>
+                                                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                                                            <li class="list-group-item">Morbi leo risus</li>
+                                                        </ul>
+
+                                                        <button type="submit" class="btn btn-info btn-lg mt-3">Enviar</button>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="card">
+                                                            <img src="img/img1.jpg" class="card-img-top" alt="...">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h4>Proyecto</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="exampleFormControlFile1">Agregue su proyecto</label>
+                                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+
+                                                        <ul class="list-group mt-3">
+                                                            <li class="list-group-item">Cras justo odio</li>
+                                                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                                                            <li class="list-group-item">Morbi leo risus</li>
+                                                        </ul>
+
+                                                        <button type="submit" class="btn btn-info btn-lg mt-3">Enviar</button>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="card">
+                                                            <img src="img/img1.jpg" class="card-img-top" alt="...">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+
+
+                <footer class="bg-dark p-3">
+                    <p class="text-light text-center">Copyright 2020 SENATI</p>
+                </footer>
+            </div>
+        </div>
+
+
+    </div>
     </div>
 </template>
 
@@ -11,167 +163,44 @@ export default {
 </script>
 
 <style scoped>
- @import url('https://fonts.googleapis.com/css2? family = Poppins: ital, wght @ 0,100; 0,200; 0,300; 0,400; 0,500; 0,600; 0,700; 0,800; 0,900; 1,100; 1,200; 1.300; 1.400; 1.500; 1.600; 1.700; 1.800; 1.900 & display = swap ');
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
-    
-    section {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-    }
-    
-    section .imgBx {
-        position: relative;
-        width: 50%;
-        height: 100%;
-    }
-    
-    section .imgBx::before {
-        position: absolute;
-        content: '';
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(225deg, #0c3247, #03a9f4);
-        z-index: 1;
-        mix-blend-mode: screen;
-    }
-    
-    section .imgBx img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    section .contentBx {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50%;
-        height: 100%;
-    }
-    
-    section .contentBx .formBx {
-        width: 50%;
-    }
-    
-    section .contentBx .formBx h2 {
-        color: #607d8b;
-        font-weight: 600;
-        font-size: 1.5em;
-        text-transform: uppercase;
-        margin-bottom: 20px;
-        border-bottom: 4px solid #03a9f4;
-        display: inline-block;
-        letter-spacing: 1px;
-    }
-    
-    section .contentBx .formBx .inputBx {
-        margin-bottom: 20px;
-    }
-    
-    section .contentBx .formBx .inputBx span {
-        font-size: 16px;
-        margin-bottom: 5px;
-        display: inline-block;
-        color: #607db8;
-        font-weight: 300;
-        font-size: 16px;
-        letter-spacing: 1px;
-    }
-    
-    section .contentBx .formBx .inputBx input {
-        width: 100%;
-        padding: 10px 20px;
-        outline: none;
-        font-weight: 400;
-        border: 1px solid #607d8b;
-        font-size: 16px;
-        letter-spacing: 1px;
-        color: #607d8b;
-        background: transparent;
-        border-radius: 30px;
-    }
-    
-    section .contentBx .formBx .inputBx input[type="submit"] {
-        background: #03a9f4;
-        color: #fff;
-        border: none;
-        font-weight: 500;
-        cursor: pointer;
-    }
-    
-    section .contentBx .formBx .inputBx input[type="submit"]:hover {
-        background: skyblue;
-    }
-    
-    .remember {
-        margin-bottom: 10px;
-        color: #607d8b;
-        font-weight: 400;
-        font-size: 14px;
-    }
-    
-    section .contentBx .formBx h3 {
-        color: #607d8b;
-        text-align: center;
-        margin: 80px 0 10px;
-        font-weight: 500;
-    }
-    
-    section .contentBx .formBx .sci {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    section .contentBx .formBx .sci li {
-        list-style: none;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 7px;
-    }
-    
-    @media (max-width:768px) {
-        section .imgBx {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        section .contentBx {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        section .contentBx .formBx {
-            width: 100%;
-            padding: 40px;
-            background: rgb(255 255 255 / 0.9);
-            margin: 50px;
-        }
-        section .contentBx .formBx h3 {
-            color: #607d8b;
-            text-align: center;
-            margin: 30px 0 10px;
-            font-weight: 500;
-        }
-    }
+#sidebar-container .menu>.selected {
+    background-color: grey;
+}
+
+#sidebar-container .menu>a:hover {
+    background-color: #0275d8;
+    text-decoration: none;
+}
+
+.bg-primary {
+    background-color: #111B54 !important;
+}
+
+#sidebar-container {
+    min-height: 100vh;
+}
+
+#sidebar-container .menu {
+    width: 15rem;
+}
+
+
+/* .w-100 {
+  overflow-y: auto;
+} */
+
+.avatar {
+    max-width: 35px;
+}
+
+#content {
+    overflow-y: auto;
+    height: 100vh;
+}
+
+#icon01,
+#icon02,
+#icon03 {
+    cursor: pointer;
+}
 </style>
