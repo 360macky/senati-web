@@ -1,0 +1,40 @@
+#sidebar-container .menu>.selected {
+    background-color: grey;
+}
+
+#sidebar-container .menu>a:hover {
+    background-color: #0275d8;
+    text-decoration: none;
+}
+
+.bg-primary {
+    background-color: #111B54 !important;
+}
+
+#sidebar-container {
+    min-height: 100vh;
+}
+
+#sidebar-container .menu {
+    width: 15rem;
+}
+
+
+/* .w-100 {
+  overflow-y: auto;
+} */
+
+.avatar {
+    max-width: 35px;
+}
+
+#content {
+    overflow-y: auto;
+    height: 100vh;
+}
+
+#icon01,
+#icon02,
+#icon03 {
+    cursor: pointer;
+}
