@@ -1,49 +1,12 @@
 <template>
     <div>
-        <section>
-        <div class="imgBx">
-            <img src="../assets/senati_login.jpg" alt="">
-        </div>
-        <div class="contentBx">
-
-            <div class="formBx">
-                <h2>Iniciar Sesion</h2>
-                <form>
-                    <div class="inputBx">
-                        <span>Usuario</span>
-                        <input type="text" name="">
-                    </div>
-                    <div class="inputBx">
-                        <span>Contraseña</span>
-                        <input type="password" name="">
-                    </div>
-                    <div class="remember">
-                        <label><input type="checkbox" name="">Recordar Contraseña</label>
-                    </div>
-                    <div class="inputBx">
-                        <input type="submit" value="Iniciar Sesion" name="">
-                    </div>
-
-                </form>
-                <h3>Ingresar a nuestras paginas</h3>
-                <ul class="sci">
-                    <li>
-                        <a href="https://www.facebook.com/SenatiOficial/"><img src="../assets/facebook.png" alt="" style="width: 40px;height: 40px;"></a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/SenatiOficial/"><img src="../assets/youtube.png" alt="" style="width: 50px;height: 50px;"></a>
-
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        Perfil page
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Home'
+    name: 'Perfil'
 }
 </script>
 
