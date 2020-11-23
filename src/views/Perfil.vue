@@ -46,15 +46,15 @@
                                             <a style="padding-top: 15px;" href="#" data-toggle="modal" data-target="#id01"><i class="fas fa-pen mr-1"></i>Editar</a>
 
                                             <div class="mt-3">
-                                                <h4>Sergio Alejandro</h4>
+                                                <h4>Luisito Alburqueque</h4>
                                                 <p class="text-secondary mb-1">Desarrollo de software</p>
-                                                <p class="text-muted font-size-sm">Centro de lima,28 de julio</p>
+                                                <p class="text-muted font-size-sm">Centro de Lima, 28 de julio</p>
 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mt-3">
+                                <!-- <div class="card mt-3">
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                             <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
@@ -77,7 +77,7 @@
                                             <a href="" class="text-secondary">https://bootdey.com</a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="col-md-8">
                                 <div class="card mb-3">
@@ -87,9 +87,11 @@
                                                 <h6 class="mb-0">Nombre Completo </h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary" style="display: flex;">
-                                                Kenneth Valdez
+                                                <label id="nombreInput">
+                                                    Luis Alburqueque
+                                                </label>
                                                 <div style="padding-left: 15px;">
-                                                    <a href="#" data-toggle="modal" data-target="#id02"><i class="fas fa-pen mr-1"></i>Editar</a>
+                                                    <a @click="openInput('nombreInput')" data-toggle="modal" data-target="#id02"><i class="fas fa-pen mr-1"></i>Editar</a>
                                                 </div>
                                             </div>
 
@@ -100,7 +102,7 @@
                                                 <h6 class="mb-0">Correo</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                1214638@senati.pe
+                                                luis@gmail.com
                                             </div>
                                         </div>
                                         <hr>
@@ -120,7 +122,7 @@
                                                 <h6 class="mb-0">Celular</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                918115425
+                                                922513060
                                                 <a style="padding-left: 15px;" href="#" data-toggle="modal" data-target="#id03"><i class="fas fa-pen mr-1"></i>Editar</a>
 
                                             </div>
@@ -333,9 +335,17 @@ export default {
                 }
             }
             return '';
-        }
+        },
+        getUserData() {
+        },
+        openInput(field) {
+            console.log({ field })
+            let fieldElement = document.getElementById(field);
+            fieldElement.innerHTML = `<input id="nombre" class="form-control"></input><button class="btn btn-success">Actualizar</button>`
+        },
     }
 }
+
 </script>
 
 <style scoped>
