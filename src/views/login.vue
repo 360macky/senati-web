@@ -11,11 +11,11 @@
                 <form>
                     <div class="inputBx">
                         <span>Usuario</span>
-                        <input type="text" name="">
+                        <input type="text" name="username" autofocus>
                     </div>
                     <div class="inputBx">
                         <span>Contraseña</span>
-                        <input type="password" name="">
+                        <input type="password" name="password">
                     </div>
                     <div class="remember">
                         <label><input type="checkbox" name="">Recordar Contraseña</label>
