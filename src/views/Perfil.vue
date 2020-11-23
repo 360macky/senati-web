@@ -11,7 +11,7 @@
         <div class="d-flex">
             <div id="sidebar-container" class="bg-primary">
             <div class="logo">
-                <img src="img/logo.png" alt="Logotipo de Senati" class="img-fluid mx-auto d-block" width="200px">
+                <img src="https://i.imgur.com/Stl4qpM.png" alt="Logotipo de Senati" class="img-fluid mx-auto d-block" width="200px">
             </div>
 
             <div class="user m-3 bg-info rounded-pill">
