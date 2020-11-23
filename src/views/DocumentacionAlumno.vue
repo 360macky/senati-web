@@ -14,9 +14,9 @@
             </div>
 
             <div class="menu">
-                <a href="inicio.html" class="d-block text-light p-3"><i class="fas fa-home mr-2"></i>Inicio</a>
-                <a href="perfil.html" class="d-block text-light p-3"><i class="fas fa-user mr-2"></i>Perfil</a>
-                <a href="documentacion_alumno.html" class="selected d-block text-light p-3"><i class="far fa-file mr-2"></i>Documentación</a>
+                <a href="inicio" class="d-block text-light p-3"><i class="fas fa-home mr-2"></i>Inicio</a>
+                <a href="perfil" class="d-block text-light p-3"><i class="fas fa-user mr-2"></i>Perfil</a>
+                <a href="documentacion_alumno" class="selected d-block text-light p-3"><i class="far fa-file mr-2"></i>Documentación</a>
                 <a href="#" class="d-block text-light p-3"><i class="far fa-calendar mr-2"></i>Calendario</a>
 
                 <a href="#" class="d-block text-light p-3"><i class="fas fa-sign-out-alt mr-2"></i>Cerrar sesión</a>
