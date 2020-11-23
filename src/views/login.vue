@@ -11,17 +11,17 @@
                 <form>
                     <div class="inputBx">
                         <span>Usuario</span>
-                        <input type="text" name="username" autofocus>
+                        <input type="text" name="username" id="username" autofocus>
                     </div>
                     <div class="inputBx">
                         <span>Contraseña</span>
-                        <input type="password" name="password">
+                        <input type="password" name="password" id="password">
                     </div>
                     <div class="remember">
                         <label><input type="checkbox" name="">Recordar Contraseña</label>
                     </div>
                     <div class="inputBx">
-                        <input type="submit" value="Iniciar Sesion" name="">
+                        <input type="submit" value="Iniciar Sesion" name="" @click="submit">
                     </div>
 
                 </form>
@@ -43,7 +43,18 @@
 
 <script>
 export default {
-    name: 'Home'
+    name: 'Home',
+    methods: {
+        submit(e) {
+            e.preventDefault();
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            // Hardcoding
+            if (username == '122365' && password == '123456') {
+                window.location.href = '/perfil';
+            }
+        }
+    }
 }
 </script>
 
