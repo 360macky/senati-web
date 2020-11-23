@@ -68,6 +68,9 @@
 <script>
 export default {
     name: 'Home',
+    created() {
+        document.title = 'Iniciar sesión';
+    },
     methods: {
         setCookie(cname, cvalue, exdays) {
             let d = new Date();

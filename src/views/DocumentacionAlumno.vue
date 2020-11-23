@@ -159,6 +159,7 @@
 export default {
     name: 'DocumentacionAlumno',
     created() {
+        document.title = 'Enviar documentación';
         if (this.getCookie('username') != '122365' || this.getCookie('password') != '123456') {
             window.location.href = '/';
         }

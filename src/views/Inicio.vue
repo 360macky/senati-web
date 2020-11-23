@@ -137,6 +137,7 @@
 export default {
     name: 'Inicio',
     created() {
+        document.title = 'Inicio';
         if (this.getCookie('username') != '122365' || this.getCookie('password') != '123456') {
             window.location.href = '/';
         }

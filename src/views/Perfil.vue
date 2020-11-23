@@ -309,7 +309,8 @@
 <script>
 export default {
     name: 'Perfil',
-        created() {
+    created() {
+        document.title = 'Perfil';
         if (this.getCookie('username') != '122365' || this.getCookie('password') != '123456') {
             window.location.href = '/';
         }
