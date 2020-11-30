@@ -36,7 +36,6 @@
             </div>
         </div>
     </section>
-    {{session}}
     </div>
 </template>
 
@@ -62,7 +61,6 @@ export default {
       username: "",
       password: "",
     },
-    success : false
     }),
     methods: {
         ...mapMutations(['login']),
@@ -75,13 +73,13 @@ export default {
             var ContentType = {headers: {"Content-Type": "multipart/form-data"}}
              await axios.post("https://senati.herokuapp.com/api/login/",userFormData,ContentType)
             .then(response => {
-                console.log(response);
                 sessionStorage.setItem("session",response.data.success + date.getTime())
                 sessionStorage.setItem("sessionActive",true);
                 localStorage.setItem("email",response.data.userData.email_usu)
                 localStorage.setItem("apellido",response.data.userData.ape_usu)
                 localStorage.setItem("nombre",response.data.userData.nom_usu)
                 localStorage.setItem("FullName",response.data.userData.nom_usu + response.data.userData.ape_usu);
+                localStorage.setItem("UserId",response.data.userData.id_usu);
                 //state.fullName = response.data.userData.nom_usu + response.data.userData.ape_usu;
                 //state.rol = response.data.userData.rolid;
                 //state.session = response.data.success;

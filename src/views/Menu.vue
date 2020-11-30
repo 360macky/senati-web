@@ -36,10 +36,19 @@
 
 export default {
   name: "Menu",
+  created(){
+        console.log(sessionStorage.getItem("sessionActive"))
+        if(sessionStorage.getItem("sessionActive") != "true"){
+            this.$router.push("/login")
+        }else{
+          this.$router.push("/Menu/Inicio")
+        }
+    },
   data: () => ({
     email: localStorage.getItem("email"),
     apellido: localStorage.getItem("apellido"),
     nombre: localStorage.getItem("nombre"),
+    id: localStorage.getItem("UserId"),
   }),
 };
 </script>
