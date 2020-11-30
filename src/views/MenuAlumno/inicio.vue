@@ -63,7 +63,7 @@
           style="padding: 50px"
         >
           <div class="contenedor-servicio">
-            <img src="img/quality_check_isometric.png" alt="" />
+            <img src="../../assets/quality_check_isometric.png" alt="" />
             <div class="checklist-servicio">
               <div class="service">
                 <p class="n-service">
@@ -110,7 +110,7 @@
           </div>
         </section>
 
-        <footer class="bg-dark p-3" style="bottom: 0">
+        <footer class="bg-dark p-3 mt-3" style="bottom: 0">
           <p class="text-light text-center">Copyright 2020 SENATI</p>
         </footer>
       </div>
