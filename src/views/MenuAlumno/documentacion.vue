@@ -109,7 +109,7 @@
                                                         type="file"
                                                         class="form-control-file"
                                                         id="exampleFormControlFile1"
-                                                        ref="recibo"
+                                                        ref="dni"
                                                         v-on:change="handleFileUploadDni()"
                                                     />
 
@@ -135,7 +135,7 @@
                                                     <button
                                                         type="submit"
                                                         class="btn btn-info btn-lg mt-3"
-                                                        v-on:click="submitFile('DNI',this.dni)"
+                                                        v-on:click="submitFile('DNI')"
                                                     >
                                                         Enviar
                                                     </button>
@@ -172,7 +172,8 @@
                                                         type="file"
                                                         class="form-control-file"
                                                         id="exampleFormControlFile1"
-                                                        vi-on:change="handleFileUploadCertidicadoalificaciones()"
+                                                        ref="certificado"
+                                                        v-on:change="handleFileUploadCertidicadoalificaciones()"
                                                     />
 
                                                     <ul class="list-group mt-3">
@@ -197,19 +198,19 @@
                                                     <button
                                                         type="submit"
                                                         class="btn btn-info btn-lg mt-3"
-                                                        v-on:click="submitFile('CERTIFICADO', this.certificado)" 
+                                                        v-on:click="submitFile('CERTIFICADO')" 
                                                     >
                                                         Enviar
                                                     </button>
                                                 </div>
 
-                                                <div class="col-lg-4">
-                                                    <div class="card">
-                                                        <img
-                                                            src="img/img1.jpg"
-                                                            class="card-img-top"
-                                                            alt="..."
-                                                        />
+                                                <div class="col-lg-6">
+                                                    <div class="card h-100">
+                                                        <iframe 
+                                                            class="h-100"
+                                                            :src="this.urlCertificado"
+                                                        >
+                                                        </iframe>
                                                     </div>
                                                 </div>
                                             </div>
@@ -219,8 +220,9 @@
                                 <div class="card mt-3">
                                     <div class="card-header">
                                         <h4>
-                                            Copia del Certificado de
-                                            Calificación Profesional
+                                            <!-- Copia del Certificado de
+                                            Calificación Profesional -->
+                                            PROYECTO
                                         </h4>
                                     </div>
                                     <div class="card-body">
@@ -230,12 +232,14 @@
                                                     <label
                                                         for="exampleFormControlFile1"
                                                         >Agregue su
-                                                        Certificado</label
+                                                        Proyecto</label
                                                     >
                                                     <input
                                                         type="file"
                                                         class="form-control-file"
                                                         id="exampleFormControlFile1"
+                                                        ref="proyecto"
+                                                        v-on:changue="handleFileUploadProyecto()"
                                                     />
 
                                                     <ul class="list-group mt-3">
@@ -260,19 +264,20 @@
                                                     <button
                                                         type="submit"
                                                         class="btn btn-info btn-lg mt-3"
-                                                        v-on:click="submitFile('PROYECTO', this.copiaCertificado)"
+                                                        v-on:click="submitFile('PROYECTO')"
                                                     >
                                                         Enviar
                                                     </button>
                                                 </div>
 
-                                                <div class="col-lg-4">
-                                                    <div class="card">
-                                                        <img
-                                                            src="img/img1.jpg"
-                                                            class="card-img-top"
-                                                            alt="..."
-                                                        />
+                                                <div class="col-lg-6">
+                                                    <div class="card h-100">
+                                                        <iframe
+                                                            class="h-100"
+                                                            :src="this.proyecto"
+                                                        >
+
+                                                        </iframe>
                                                     </div>
                                                 </div>
                                             </div>
@@ -299,16 +304,19 @@ export default {
     created(){
       console.log("Test");
       this.getDocument("DNI")
+      this.getDocument("PROYECTO")
+      this.getDocument("CERTIFICADO")
     },
  
     data: () => ({
         //recibo: '',
-        urlDni :"",
-        urlCertificado :"",
-        urlCopiaCertificado :"",
+        urlDni : "",
+        urlCertificado : "",
+        //urlCopiaCertificado :"",
+        urlProyecto : "",
         dni : "",
         certificado : "",
-        copiaCertificado : "",
+        proyecto : "",
         ContentType:{
             headers: {'Content-Type': 'multipart/form-data'}
         }
@@ -320,19 +328,27 @@ export default {
         },
         handleFileUploadCertidicadoalificaciones() {
             this.certificado = this.$refs.certificado.files[0];
+            console.log("hecho");
         },
-        handleFileUploadCopiaCertificado() {
-            this.copiaCertificado = this.$refs.copiaCertificado.files[0];
+        handleFileUploadProyecto() {
+            this.proyecto = this.$refs.proyecto.files[0];
         },
-        submitFile(type, document){
+        submitFile(type){
             let formData = new FormData();
             formData.append('id_username', localStorage.getItem("UserId"));
-            formData.append('type', type);
-            formData.append('document', document);
+            formData.append('type',type);
+            if(type == "DNI"){
+                formData.append('document', this.dni);
+            }else if(type == 'CERTIFICADO'){
+                formData.append('document', this.certificado);
+            }else if(type == 'PROYECTO'){
+                formData.append('document', this.proyecto);
+            }else{
+                console.log(type)
+            }
             axios.post( "https://senati-api.000webhostapp.com/upload.php", formData, this.ContentType
             ).then(response=>{
-                console.log('SUCCESS!!');
-                console.log(response)
+                console.log(response.data)
             }).catch(error=>{
                 console.log('FAILURE!!');
                 console.log(error)
@@ -345,7 +361,7 @@ export default {
             }else if(type == "CERTIFICADO"){
                 await this.Peticion("https://senati.herokuapp.com/api/get-document/cert.php")
             }else if(type == "PROYECTO"){
-                await this.Peticion("https://senati.herokuapp.com/api/get-document/cert.php")
+                await this.Peticion("https://senati.herokuapp.com/api/get-document/proy.php")
             }
         },
         async Peticion(url){
@@ -353,10 +369,21 @@ export default {
             user.append("id",localStorage.getItem("UserId"));
             await axios.post(url,user, this.ContentType)
                     .then(response=>{
-                        console.log(response)
-                        if(response.data.success == true){
+                        if(url == "https://senati.herokuapp.com/api/get-document/dni.php"){
+                            if(response.data.success == true){
                             this.urlDni = response.data.document_url
+                            console.log(this.urlDni);
+                            }
+                        }else if(url == "https://senati.herokuapp.com/api/get-document/cert.php"){
+                            if(response.data.success == true){
+                            this.urlCertificado = response.data.document_url
+                            }
+                        }else if(url == "https://senati.herokuapp.com/api/get-document/proy.php"){
+                            if(response.data.success == true){
+                            this.urlProyecto = response.data.document_url
+                            }
                         }
+                        
                     })
         }
         
