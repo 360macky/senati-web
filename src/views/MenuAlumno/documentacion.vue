@@ -274,7 +274,7 @@
                                                     <div class="card h-100">
                                                         <iframe
                                                             class="h-100"
-                                                            :src="this.proyecto"
+                                                            :src="this.urlProyecto"
                                                         >
 
                                                         </iframe>
@@ -328,7 +328,6 @@ export default {
         },
         handleFileUploadCertidicadoalificaciones() {
             this.certificado = this.$refs.certificado.files[0];
-            console.log("hecho");
         },
         handleFileUploadProyecto() {
             this.proyecto = this.$refs.proyecto.files[0];
