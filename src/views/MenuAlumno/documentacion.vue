@@ -239,7 +239,7 @@
                                                         class="form-control-file"
                                                         id="exampleFormControlFile1"
                                                         ref="proyecto"
-                                                        v-on:changue="handleFileUploadProyecto()"
+                                                        v-on:change="handleFileUploadProyecto()"
                                                     />
 
                                                     <ul class="list-group mt-3">
@@ -342,8 +342,6 @@ export default {
                 formData.append('document', this.certificado);
             }else if(type == 'PROYECTO'){
                 formData.append('document', this.proyecto);
-            }else{
-                console.log(type)
             }
             axios.post( "https://senati-api.000webhostapp.com/upload.php", formData, this.ContentType
             ).then(response=>{
@@ -380,6 +378,7 @@ export default {
                         }else if(url == "https://senati.herokuapp.com/api/get-document/proy.php"){
                             if(response.data.success == true){
                             this.urlProyecto = response.data.document_url
+                            console.log("Proyecto: "+this.urlProyecto)
                             }
                         }
                         
