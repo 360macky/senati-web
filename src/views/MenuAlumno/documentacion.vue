@@ -143,6 +143,7 @@
 
                                                 <div class="col-lg-6">
                                                     <div class="card h-100">
+                                                        <img v-if="this.urlDni == ''" src="../../assets/loading.gif"/>
                                                         <iframe
                                                             class="h-100"
                                                             :src="this.urlDni"
@@ -206,6 +207,7 @@
 
                                                 <div class="col-lg-6">
                                                     <div class="card h-100">
+                                                        <img  v-if="this.urlCertificado == ''" src="../../assets/loading.gif"/>
                                                         <iframe 
                                                             class="h-100"
                                                             :src="this.urlCertificado"
@@ -272,6 +274,7 @@
 
                                                 <div class="col-lg-6">
                                                     <div class="card h-100">
+                                                        <img v-if="this.urlProyecto == ''" src="../../assets/loading.gif"/>
                                                         <iframe
                                                             class="h-100"
                                                             :src="this.urlProyecto"
@@ -325,6 +328,8 @@ export default {
     methods: {
         handleFileUploadDni() {
             this.dni = this.$refs.dni.files[0];
+            this.urlDni =  URL.createObjectURL(this.dni);
+            console.log(this.urlDni);
         },
         handleFileUploadCertidicadoalificaciones() {
             this.certificado = this.$refs.certificado.files[0];
