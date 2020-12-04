@@ -108,12 +108,10 @@
                         href="#"
                         data-toggle="modal"
                         data-target="#id03"
-                        > <b-button v-b-modal.modal-1>Editar</b-button>
-
-  <b-modal id="modal-1" title="BootstrapVue">
-    <p class="my-4">Editdar Numero </p>
-  </b-modal>
+                        ><i class="fas fa-pen mr-1"></i>Editar</a
                       >
+                      <div>
+  
                     </div>
                   </div>
                   <hr />
@@ -270,7 +268,6 @@
         <p class="text-light text-center">Copyright 2020 SENATI</p>
       </footer>
     </div>
-
   </div>
 </template>
 
