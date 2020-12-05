@@ -110,6 +110,7 @@
                         data-target="#id03"
                         ><i class="fas fa-pen mr-1"></i>Editar</a
                       >
+                      
                     </div>
                   </div>
                   <hr />
@@ -258,6 +259,7 @@
             </div>
           </div>
         </div>
+        
       </section>
       <footer
         class="bg-dark p-3 mt-3"
@@ -265,8 +267,10 @@
       >
         <p class="text-light text-center">Copyright 2020 SENATI</p>
       </footer>
+      
     </div>
   </div>
+  
 </template>
 
 <script>
