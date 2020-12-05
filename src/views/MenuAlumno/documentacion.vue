@@ -105,14 +105,22 @@
                                                         for="exampleFormControlFile1"
                                                         >Agregue su DNI</label
                                                     >
-                                                    <input
+                                                    <!-- <input
                                                         type="file"
                                                         class="form-control-file"
                                                         id="exampleFormControlFile1"
                                                         ref="dni"
                                                         v-on:change="handleFileUploadDni()"
-                                                    />
-
+                                                    /> -->
+                                                    <div class="custom-file">
+                                                        <input 
+                                                            type="file" 
+                                                            class="custom-file-input" 
+                                                            id="customFileLangHTML"
+                                                            ref="dni"
+                                                            v-on:change="handleFileUploadDni()">
+                                                        <label class="custom-file-label text-left" for="customFileLangHTML" data-browse="Elegir">{{Dni.dniName}}</label>
+                                                    </div>
                                                     <ul class="list-group mt-3">
                                                         <li
                                                             class="list-group-item"
@@ -143,10 +151,11 @@
 
                                                 <div class="col-lg-6">
                                                     <div class="card h-100">
-                                                        <img v-if="this.urlDni == ''" src="../../assets/loading.gif"/>
+                                                        <div v-if="this.Dni.estado == false">No hay contenido</div>
+                                                        <img v-if="this.Dni.urlDni == ''" src="../../assets/loading.gif"/>
                                                         <iframe
                                                             class="h-100"
-                                                            :src="this.urlDni"
+                                                            :src="this.Dni.urlDni"
                                                         >
                                                         </iframe>
                                                     </div>
@@ -169,13 +178,22 @@
                                                         >Agregue su
                                                         Certificado</label
                                                     >
-                                                    <input
+                                                    <!-- <input
                                                         type="file"
                                                         class="form-control-file"
                                                         id="exampleFormControlFile1"
                                                         ref="certificado"
-                                                        v-on:change="handleFileUploadCertidicadoalificaciones()"
-                                                    />
+                                                        v-on:change="()"
+                                                    /> -->
+                                                    <div class="custom-file">
+                                                        <input 
+                                                            type="file" 
+                                                            class="custom-file-input" 
+                                                            id="customFileLangHTML"
+                                                            ref="certificado"
+                                                            v-on:change="handleFileUploadCertidicadoalificaciones()">
+                                                        <label class="custom-file-label text-left" for="customFileLangHTML" data-browse="Elegir">{{Certificado.certificadoName}}</label>
+                                                    </div>
 
                                                     <ul class="list-group mt-3">
                                                         <li
@@ -207,10 +225,11 @@
 
                                                 <div class="col-lg-6">
                                                     <div class="card h-100">
-                                                        <img  v-if="this.urlCertificado == ''" src="../../assets/loading.gif"/>
+                                                        <div v-if="this.Certificado.estado == false">No hay contenido</div>
+                                                        <img  v-if="this.Certificado.urlCertificado == ''" src="../../assets/loading.gif"/>
                                                         <iframe 
                                                             class="h-100"
-                                                            :src="this.urlCertificado"
+                                                            :src="this.Certificado.urlCertificado"
                                                         >
                                                         </iframe>
                                                     </div>
@@ -236,13 +255,22 @@
                                                         >Agregue su
                                                         Proyecto</label
                                                     >
-                                                    <input
+                                                    <!-- <input
                                                         type="file"
                                                         class="form-control-file"
                                                         id="exampleFormControlFile1"
                                                         ref="proyecto"
                                                         v-on:change="handleFileUploadProyecto()"
-                                                    />
+                                                    /> -->
+                                                    <div class="custom-file">
+                                                        <input 
+                                                            type="file" 
+                                                            class="custom-file-input" 
+                                                            id="customFileLangHTML"
+                                                            ref="proyecto"
+                                                            v-on:change="handleFileUploadProyecto()">
+                                                        <label class="custom-file-label text-left" for="customFileLangHTML" data-browse="Elegir">{{Proyecto.proyectoName}}</label>
+                                                    </div>
 
                                                     <ul class="list-group mt-3">
                                                         <li
@@ -274,10 +302,11 @@
 
                                                 <div class="col-lg-6">
                                                     <div class="card h-100">
-                                                        <img v-if="this.urlProyecto == ''" src="../../assets/loading.gif"/>
+                                                        <div v-if="this.Proyecto.estado == false">No hay contenido</div>
+                                                        <img v-if="this.Proyecto.urlProyecto == ''" src="../../assets/loading.gif"/>
                                                         <iframe
                                                             class="h-100"
-                                                            :src="this.urlProyecto"
+                                                            :src="this.Proyecto.urlProyecto"
                                                         >
 
                                                         </iframe>
@@ -313,13 +342,26 @@ export default {
  
     data: () => ({
         //recibo: '',
-        urlDni : "",
-        urlCertificado : "",
+        Dni:{
+            dni : "",
+            urlDni : "",
+            dniName : "Selecciona un archivo",
+            estado : false
+        },
+        Certificado:{
+            certificado : "",
+            urlCertificado : "",
+            certificadoName : "Selecciona un archivo",
+            estado : false
+        },
+        Proyecto:{
+            proyecto : "",
+            urlProyecto : "",
+            proyectoName : "Selecciona un archivo",
+            estado : false
+        },
         //urlCopiaCertificado :"",
-        urlProyecto : "",
-        dni : "",
-        certificado : "",
-        proyecto : "",
+        
         ContentType:{
             headers: {'Content-Type': 'multipart/form-data'}
         }
@@ -327,26 +369,39 @@ export default {
     }),
     methods: {
         handleFileUploadDni() {
-            this.dni = this.$refs.dni.files[0];
-            this.urlDni =  URL.createObjectURL(this.dni);
+            this.Dni.dni = this.$refs.dni.files[0];
+            this.Dni.dniName = this.$refs.dni.files[0].name;
+            if(this.Dni.urlDni == ''){
+                this.Dni.urlDni =  URL.createObjectURL(this.Dni.dni);
+            }
             console.log(this.urlDni);
         },
         handleFileUploadCertidicadoalificaciones() {
-            this.certificado = this.$refs.certificado.files[0];
+            this.Certificado.certificadoName = this.$refs.certificado.files[0].name;
+            this.Certificado.certificado = this.$refs.certificado.files[0];
+            if(this.Certificado.urlCertificado == ''){
+                this.Certificado.urlCertificado =  URL.createObjectURL(this.Certificado.certificado);
+            }
+            console.log(this.urlCertificado);
         },
         handleFileUploadProyecto() {
-            this.proyecto = this.$refs.proyecto.files[0];
+            console.log("Se empezo a ejecutar la funcion 'handleFileUploadProyecto()' ")
+            this.Proyecto.proyectoName = this.$refs.proyecto.files[0].name;
+            this.Proyecto.proyecto = this.$refs.proyecto.files[0];
+            if(this.Proyecto.urlProyecto == ''){
+                this.Proyecto.urlProyecto  =  URL.createObjectURL(this.Proyecto.proyecto);
+            }
         },
         submitFile(type){
             let formData = new FormData();
             formData.append('id_username', localStorage.getItem("UserId"));
             formData.append('type',type);
             if(type == "DNI"){
-                formData.append('document', this.dni);
+                formData.append('document', this.Dni.dni);
             }else if(type == 'CERTIFICADO'){
-                formData.append('document', this.certificado);
+                formData.append('document', this.Certificado.certificado);
             }else if(type == 'PROYECTO'){
-                formData.append('document', this.proyecto);
+                formData.append('document', this.Proyecto.proyecto);
             }
             axios.post( "https://senati-api.000webhostapp.com/upload.php", formData, this.ContentType
             ).then(response=>{
@@ -357,7 +412,6 @@ export default {
             });
         },
         async getDocument(type){
-            
             if(type == "DNI"){
                 await this.Peticion("https://senati.herokuapp.com/api/get-document/dni.php")
             }else if(type == "CERTIFICADO"){
@@ -373,23 +427,22 @@ export default {
                     .then(response=>{
                         if(url == "https://senati.herokuapp.com/api/get-document/dni.php"){
                             if(response.data.success == true){
-                            this.urlDni = response.data.document_url
-                            console.log(this.urlDni);
+                            this.Dni.urlDni = response.data.document_url
+                            this.Dni.estado = true;
                             }
                         }else if(url == "https://senati.herokuapp.com/api/get-document/cert.php"){
                             if(response.data.success == true){
-                            this.urlCertificado = response.data.document_url
+                            this.Certificado.urlCertificado = response.data.document_url
+                            this.Certificado.estado = true;
                             }
                         }else if(url == "https://senati.herokuapp.com/api/get-document/proy.php"){
                             if(response.data.success == true){
-                            this.urlProyecto = response.data.document_url
-                            console.log("Proyecto: "+this.urlProyecto)
+                            this.Proyecto.urlProyecto = response.data.document_url
+                            this.Proyecto.estado = true;
                             }
                         }
-                        
                     })
         }
-        
     }
 }
 </script>

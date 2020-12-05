@@ -78,8 +78,11 @@ export default {
                 localStorage.setItem("email",response.data.userData.email_usu)
                 localStorage.setItem("apellido",response.data.userData.ape_usu)
                 localStorage.setItem("nombre",response.data.userData.nom_usu)
-                localStorage.setItem("FullName",response.data.userData.nom_usu + response.data.userData.ape_usu);
+                localStorage.setItem("FullName",response.data.userData.nom_usu +" "+ response.data.userData.ape_usu);
                 localStorage.setItem("UserId",response.data.userData.id_usu);
+                localStorage.setItem("Carrera",response.data.userData.carrera.nombre_carrera);
+                localStorage.setItem("Sede",response.data.userData.sede.nombre_sede);
+                localStorage.setItem("telefono",response.data.userData.telf_usu);
                 //state.fullName = response.data.userData.nom_usu + response.data.userData.ape_usu;
                 //state.rol = response.data.userData.rolid;
                 //state.session = response.data.success;

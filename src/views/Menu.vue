@@ -9,7 +9,7 @@
             <div style="background: skyblue;" class="text-left">
                 <li style="list-style: none;">
                     <router-link to="/Menu/Perfil" class="usuario">
-                        <img style="padding: 10px 5px;" src="../assets/user.png" alt="Foto de Perfil" class="img-fluid avatar mr-2"> SERGIO ALEJANDRO
+                        <img style="padding: 10px 5px;" src="../assets/user.png" alt="Foto de Perfil" class="img-fluid avatar mr-2"> {{ nombre }}
                     </router-link>
                 </li>
             </div>
@@ -20,7 +20,7 @@
                 <router-link to="/Menu/Documentacion" class="d-block text-light p-3"><i class="far fa-file mr-2"></i>Documentación</router-link>
                 <router-link to="/Menu/Calendario" class="d-block text-light p-3"><i class="far fa-calendar mr-2"></i>Calendario</router-link>
 
-                <a href="#" class="d-block text-light p-3"><i class="fas fa-sign-out-alt mr-2"></i>Cerrar sesión</a>
+                <a v-on:click="CerrarSession()" href="" class="d-block text-light p-3"><i class="fas fa-sign-out-alt mr-2"></i>Cerrar sesión</a>
             </div>
         </div>
       <!-- <div class="col-md-9"> -->
@@ -49,7 +49,17 @@ export default {
     apellido: localStorage.getItem("apellido"),
     nombre: localStorage.getItem("nombre"),
     id: localStorage.getItem("UserId"),
+    carrera : localStorage.getItem("Carrera"),
+    sede : localStorage.getItem("Sede"),
+    telefono : localStorage.getItem("telefono")
   }),
+  methods : {
+    CerrarSession(){
+      localStorage.clear();
+      sessionStorage.clear();
+      this.$router.push("/Login");
+    }
+  }
 };
 </script>
 

@@ -26,10 +26,10 @@
                     >
 
                     <div class="mt-3">
-                      <h4>Sergio Alejandro</h4>
-                      <p class="text-secondary mb-1">1214638@senati.pe</p>
+                      <h4>{{nombre}}</h4>
+                      <p class="text-secondary mb-1">{{email}}</p>
                       <p class="text-muted font-size-sm">
-                        Centro de lima,28 de julio
+                        {{sede}}
                       </p>
                     </div>
                   </div>
@@ -68,7 +68,7 @@
                       <h6 class="mb-0">Nombre Completo</h6>
                     </div>
                     <div class="col-sm-9 text-secondary" style="display: flex">
-                      Sergio Alejandro
+                      {{nombre}}
                     </div>
                   </div>
                   <hr />
@@ -93,7 +93,7 @@
                       <h6 class="mb-0">Carrera</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Desarrollo de software
+                      {{carrera}}
                     </div>
                   </div>
                   <hr />
@@ -102,7 +102,7 @@
                       <h6 class="mb-0">Celular</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      918115425
+                      {{ telefono }}
                       <a
                         style="padding-left: 15px"
                         href="#"
@@ -118,7 +118,7 @@
                       <h6 class="mb-0">Sede</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Centro de lima,28 de julio
+                      {{sede}}
                     </div>
                   </div>
                 </div>
@@ -268,6 +268,20 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data:()=>({
+    email: localStorage.getItem("email"),
+    apellido: localStorage.getItem("apellido"),
+    nombre: localStorage.getItem("nombre"),
+    id: localStorage.getItem("UserId"),
+    carrera : localStorage.getItem("Carrera"),
+    sede : localStorage.getItem("Sede"),
+    telefono : localStorage.getItem("telefono")
+  })
+}
+</script>
 
 <style scoped>
 body {
