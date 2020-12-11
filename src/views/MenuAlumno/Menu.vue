@@ -3,22 +3,22 @@
     <!-- <div class="row p-0 m-0"> -->
       <div id="sidebar-container" class="bg-primary">
             <div class="logo">
-                <a href="https://www.senati.edu.pe/"><img src="../assets/logo.png" alt="Logotipo de Senati" class="img-fluid mx-auto d-block" width="200px"></a>
+                <a href="https://www.senati.edu.pe/"><img src="../../assets/logo.png" alt="Logotipo de Senati" class="img-fluid mx-auto d-block" width="200px"></a>
             </div>
 
             <div style="background: skyblue;" class="text-left">
                 <li style="list-style: none;">
                     <router-link to="/Menu/Perfil" class="usuario">
-                        <img style="padding: 10px 5px;" src="../assets/user.png" alt="Foto de Perfil" class="img-fluid avatar mr-2"> {{ nombre }}
+                        <img style="padding: 10px 5px;" src="../../assets/user.png" alt="Foto de Perfil" class="img-fluid avatar mr-2"> {{ nombre }}
                     </router-link>
                 </li>
             </div>
 
             <div class="menu text-left">
-                <router-link to="/Menu/Inicio" class="d-block text-light p-3"><i class="fas fa-home mr-2"></i>Inicio</router-link>
-                <router-link to="/Menu/Perfil" class="d-block text-light p-3"><i class="fas fa-user mr-2"></i>Perfil</router-link>
-                <router-link to="/Menu/Documentacion" class="d-block text-light p-3"><i class="far fa-file mr-2"></i>Documentación</router-link>
-                <router-link to="/Menu/Calendario" class="d-block text-light p-3"><i class="far fa-calendar mr-2"></i>Calendario</router-link>
+                <router-link to="/MenuAlumno/Inicio" class="d-block text-light p-3"><i class="fas fa-home mr-2"></i>Inicio</router-link>
+                <router-link to="/MenuAlumno/Perfil" class="d-block text-light p-3"><i class="fas fa-user mr-2"></i>Perfil</router-link>
+                <router-link to="/MenuAlumno/Documentacion" class="d-block text-light p-3"><i class="far fa-file mr-2"></i>Documentación</router-link>
+                <router-link to="/MenuAlumno/Calendario" class="d-block text-light p-3"><i class="far fa-calendar mr-2"></i>Calendario</router-link>
 
                 <a v-on:click="CerrarSession()" href="" class="d-block text-light p-3"><i class="fas fa-sign-out-alt mr-2"></i>Cerrar sesión</a>
             </div>
@@ -40,8 +40,6 @@ export default {
         console.log(sessionStorage.getItem("sessionActive"))
         if(sessionStorage.getItem("sessionActive") != "true"){
             this.$router.push("/login")
-        }else{
-          this.$router.push("/Menu/Inicio")
         }
     },
   data: () => ({

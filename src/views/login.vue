@@ -20,7 +20,12 @@
                         <label><input  type="checkbox" name="">Recordar Contraseña</label>
                     </div>
                     <div class="inputBx">
-                        <input type="submit" value="Iniciar Sesion">
+                        <button type="submit" value="">
+                            <div v-if="estado == 'inicial'">Iniciar Sesion</div>
+                            <img v-if="estado =='procesando' " src="../assets/carga.gif" width="25px" class=" loading">
+                            <img v-if="estado == 'success'" src="../assets/check.gif" width="25px">
+                            <div v-if="estado == 'error'">Datos Icorrectos</div>
+                        </button>
                     </div>
                 </form>
                 <h3>Ingresar a nuestras paginas</h3>
@@ -50,7 +55,11 @@ export default {
     created(){
         console.log(sessionStorage.getItem("sessionActive"))
         if(sessionStorage.getItem("sessionActive") == "true"){
-            this.$router.push("/Menu")
+            if(localStorage.getItem("rol") == "student"){
+                this.$router.push("/MenuAlumno/Inicio")
+            }else{
+                this.$router.push("/MenuAdmin")
+            }
         }
     },
     Update: function () {
@@ -58,14 +67,17 @@ export default {
     },
     data:()=>({
         user:{
-      username: "",
-      password: "",
-    },
+            username: "",
+            password: "",
+        },
+        estado : "inicial",
+        success : false
     }),
     methods: {
         ...mapMutations(['login']),
         //...mapActions(['SetToken']),
         async logear() {
+            this.estado = "procesando";
             var date = new Date();
             var userFormData = new FormData();
             userFormData.append("password",this.user.password);
@@ -75,7 +87,7 @@ export default {
             .then(response => {
                 sessionStorage.setItem("session",response.data.success + date.getTime())
                 sessionStorage.setItem("sessionActive",true);
-                localStorage.setItem("email",response.data.userData.email_usu)
+                //localStorage.setItem("email",response.data.userData.email_usu)
                 localStorage.setItem("apellido",response.data.userData.ape_usu)
                 localStorage.setItem("nombre",response.data.userData.nom_usu)
                 localStorage.setItem("FullName",response.data.userData.nom_usu +" "+ response.data.userData.ape_usu);
@@ -83,16 +95,33 @@ export default {
                 localStorage.setItem("Carrera",response.data.userData.carrera.nombre_carrera);
                 localStorage.setItem("Sede",response.data.userData.sede.nombre_sede);
                 localStorage.setItem("telefono",response.data.userData.telf_usu);
+                localStorage.setItem("codAlu",response.data.userData.id_s);
+                localStorage.setItem("rol",response.data.userData.rol.rol);
+
                 //state.fullName = response.data.userData.nom_usu + response.data.userData.ape_usu;
                 //state.rol = response.data.userData.rolid;
                 //state.session = response.data.success;
                 //state.token = response.data.token;
                 //state.correo = response.data.email_usu;
-              console.log(response);
-              this.$router.push("/Menu")
+                console.log(response);
+                
+                if(response.data.userData.rol.rol == "student"){
+                    this.$router.push("/MenuAlumno/Inicio")
+                }else{
+                    this.$router.push("/MenuAdmin/Inicio")
+                } 
             }).catch(error => {
                 console.log(error);
+                this.estado = "error";
             });
+            this.estado = "inicial";
+        },
+        sleep(milliseconds) {
+            const date = Date.now();
+            let currentDate = null;
+            do {
+            currentDate = Date.now();
+            } while (currentDate - date < milliseconds);
         }
     },
     computed:{
@@ -117,7 +146,6 @@ export default {
         height: 100vh;
         display: flex;
     }
-    
     section .imgBx {
         position: relative;
         width: 50%;
@@ -182,7 +210,7 @@ export default {
         letter-spacing: 1px;
     }
     
-    section .contentBx .formBx .inputBx input {
+    section .contentBx .formBx .inputBx input,button {
         width: 100%;
         padding: 10px 20px;
         outline: none;
@@ -195,7 +223,7 @@ export default {
         border-radius: 30px;
     }
     
-    section .contentBx .formBx .inputBx input[type="submit"] {
+    section .contentBx .formBx .inputBx button[type="submit"] {
         background: #03a9f4;
         color: #fff;
         border: none;
@@ -203,7 +231,7 @@ export default {
         cursor: pointer;
     }
     
-    section .contentBx .formBx .inputBx input[type="submit"]:hover {
+    section .contentBx .formBx .inputBx button[type="submit"]:hover {
         background: skyblue;
     }
     

@@ -16,9 +16,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/login.vue')
   },
   {
-    path: '/Menu',
+    path: '/MenuAlumno',
     name: 'menu',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Menu.vue'),
+    component: () => import(/* webpackChunkName: "about" */ '../views/MenuAlumno/Menu.vue'),
     children : [
       {
           path: 'Inicio',
@@ -44,6 +44,38 @@ const routes = [
         path: 'Contacto',
         name: 'Contacto',
         component: () => import(/* webpackChunkName: "about" */ '../views/MenuAlumno/contacto.vue')
+      }
+    ]
+  },
+  {
+    path: '/MenuAdmin',
+    name: 'menuAdmin',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MenuAdministrador/Menu.vue'),
+    children : [
+      {
+          path: 'Inicio',
+          name: 'Inicio',
+          component: () => import('../views/MenuAdministrador/inicio.vue')
+      },
+      {
+        path: 'Perfil',
+        name: 'Perfil',
+        component: () => import( '../views/MenuAdministrador/perfil.vue')
+      },
+      {
+        path: 'Documentacion',
+        name: 'Documentacion',
+        component: () => import( '../views/MenuAdministrador/documentacion.vue')
+      },
+      {
+        path: 'Seguimiento',
+        name: 'Seguimiento',
+        component: () => import('../views/MenuAdministrador/seguimiento.vue')
+      },
+      {
+        path: 'Mantenimiento',
+        name: 'Mantenimiento',
+        component: () => import('../views/MenuAdministrador/mantenimiento.vue')
       }
     ]
   }
