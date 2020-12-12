@@ -580,6 +580,17 @@ export default {
                 });
             }
         },
+        async changeNumTelf(){
+            var dataNum  = new FormData();
+                dataNum.append('id_usuario', localStorage.getItem("codAlu"));
+                dataNum.append('new_password', this.forNumTelf.numTelefono);
+
+                await axios.post('https://senati.herokuapp.com/api/update/phone.php',dataNum,this.ContentType).then(response=>{
+                    console.log(response);
+                }).catch(error=>{
+                    console.log(error);
+                });
+        }
     },
 };
 </script>

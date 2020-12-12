@@ -31,68 +31,6 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                    
-                                <div class="card mt-3">
-                                    <div class="card-header">
-                                        <h4>Recibo de Pago</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <label
-                                                        for="exampleFormControlFile1"
-                                                        >Agregue su Recibo de
-                                                        Pago</label
-                                                    >
-                                                    <input
-                                                        type="file"
-                                                        class="form-control-file"
-                                                        id="exampleFormControlFile1"
-                                                    />
-
-                                                    <ul class="list-group mt-3">
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Foto clara y en alta
-                                                            resolución
-                                                        </li>
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Dapibus ac facilisis
-                                                            in
-                                                        </li>
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Morbi leo risus
-                                                        </li>
-                                                    </ul>
-
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-info btn-lg mt-3"   
-                                                    >
-                                                        Enviar
-                                                    </button>
-                                                </div>
-
-                                                <div class="col-lg-4">
-                                                    <div class="card">
-                                                        <img
-                                                            src="img/img1.jpg"
-                                                            class="card-img-top"
-                                                            alt="..."
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="card mt-3">
                                     <div class="card-header">
                                         <h4>DNI</h4>
@@ -105,13 +43,6 @@
                                                         for="exampleFormControlFile1"
                                                         >Agregue su DNI</label
                                                     >
-                                                    <!-- <input
-                                                        type="file"
-                                                        class="form-control-file"
-                                                        id="exampleFormControlFile1"
-                                                        ref="dni"
-                                                        v-on:change="handleFileUploadDni()"
-                                                    /> -->
                                                     <div class="custom-file">
                                                         <input 
                                                             type="file" 
@@ -178,13 +109,6 @@
                                                         >Agregue su
                                                         Certificado</label
                                                     >
-                                                    <!-- <input
-                                                        type="file"
-                                                        class="form-control-file"
-                                                        id="exampleFormControlFile1"
-                                                        ref="certificado"
-                                                        v-on:change="()"
-                                                    /> -->
                                                     <div class="custom-file">
                                                         <input 
                                                             type="file" 
@@ -255,13 +179,6 @@
                                                         >Agregue su
                                                         Proyecto</label
                                                     >
-                                                    <!-- <input
-                                                        type="file"
-                                                        class="form-control-file"
-                                                        id="exampleFormControlFile1"
-                                                        ref="proyecto"
-                                                        v-on:change="handleFileUploadProyecto()"
-                                                    /> -->
                                                     <div class="custom-file">
                                                         <input 
                                                             type="file" 
@@ -360,8 +277,6 @@ export default {
             proyectoName : "Selecciona un archivo",
             estado : false
         },
-        //urlCopiaCertificado :"",
-        
         ContentType:{
             headers: {'Content-Type': 'multipart/form-data'}
         }

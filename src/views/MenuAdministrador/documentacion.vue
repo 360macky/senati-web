@@ -104,7 +104,9 @@ import axios from "axios";
 
 export default {
   created(){
-    this.getCarreras();
+    if(this.carreras == null){
+      this.getCarreras();
+    }
   },
   data:()=>({
     carreras : null,
@@ -130,12 +132,13 @@ export default {
       if(carreraId == null){
         carreraId = 1
       }
-      await axios.get("https://senati.herokuapp.com/api/careers-students/",{params:{id_carrera: carreraId}}).then(response=>{
-        console.log(response.data)
+      await axios.get("https://senati.herokuapp.com/api/careers-students",{params:{id_carrera: carreraId}}).then(response=>{
+        console.log(response.data);
+        this.alumnos = response.data;
       }).catch(error=>{
         console.log(error)
       })
-    }
+    },
   }
 }
 </script>
