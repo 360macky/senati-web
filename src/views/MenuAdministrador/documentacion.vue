@@ -46,9 +46,9 @@
                                         class="form-control"
                                         id="exampleFormControlSelect1"
                                     >
-                                        <option>Sede #1</option>
-                                        <option>Sede #2</option>
-                                        <option>Sede #3</option>
+                                        <option>Luis Cáceres Graziani</option>
+                                        <option>Independencia</option>
+                                        <option>San Juan De Lurigancho</option>
                                     </select>
                                 </div>
                             </div>
