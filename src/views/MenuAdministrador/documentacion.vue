@@ -59,7 +59,7 @@
                 <!-- Table -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card">
+                        <div v-if="alumnos != null" class="card">
                             <div class="card-body">
                                 <table
                                     class="table table-bordered table-responsive"
@@ -97,7 +97,61 @@
                                                         class="form-check-input"
                                                         checked
                                                     />
-                                                    <a href="">Ver</a>
+                                                    <a
+                                                        data-toggle="modal"
+                                                        :data-target="
+                                                            '.dni' +
+                                                            alumno.id_usu
+                                                        "
+                                                        >Ver</a
+                                                    >
+                                                </div>
+
+                                                <div
+                                                    :class="
+                                                        'modal fade bd-example-modal-lg dni' +
+                                                        alumno.id_usu
+                                                    "
+                                                    tabindex="-1"
+                                                    role="dialog"
+                                                    aria-labelledby="myLargeModalLabel"
+                                                    aria-hidden="true"
+                                                    :id="
+                                                        '#exampleModalCenter' +
+                                                        alumno.id_s
+                                                    "
+                                                >
+                                                    <div
+                                                        class="modal-dialog  modal-lg"
+                                                        role="document"
+                                                    >
+                                                        <div
+                                                            class="modal-content"
+                                                        >
+                                                            <div
+                                                                v-if="
+                                                                    alumno.url_dni ==
+                                                                    null
+                                                                "
+                                                            >
+                                                                El alumno aun no
+                                                                a entregado el
+                                                                documento
+                                                                respectivo
+                                                            </div>
+                                                            <iframe
+                                                                width="100%" height="600"
+                                                                :src="
+                                                                    alumno.url_dni
+                                                                "
+                                                                frameborder="0"
+                                                            >
+                                                            <div class="h-100">
+
+                                                            </div>
+                                                            </iframe>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </td>
                                             <td>
@@ -107,9 +161,56 @@
                                                     <input
                                                         type="checkbox"
                                                         class="form-check-input"
-                                                        checked
                                                     />
-                                                    <a href="">Ver</a>
+                                                    <a data-toggle="modal"
+                                                        :data-target="
+                                                            '.certificado' +
+                                                            alumno.id_usu
+                                                        ">
+                                                    Ver
+                                                    </a>
+                                                </div>
+                                                <div
+                                                    :class="
+                                                        'modal fade bd-example-modal-lg certificado' +
+                                                        alumno.id_usu
+                                                    "
+                                                    tabindex="-1"
+                                                    role="dialog"
+                                                    aria-labelledby="myLargeModalLabel"
+                                                    aria-hidden="true"
+                                                >
+                                                    <div
+                                                        class="modal-dialog  modal-lg"
+                                                        role="document"
+                                                    >
+                                                        <div
+                                                            class="modal-content"
+                                                        >
+                                                            <div
+                                                                v-if="
+                                                                    alumno.url_certificado ==
+                                                                    null
+                                                                "
+                                                            >
+                                                                El alumno aun no
+                                                                a entregado el
+                                                                documento
+                                                                respectivo
+                                                            </div>
+                                                            <iframe
+                                                                width="100%" height="600"
+                                                                :src="
+                                                                    alumno.url_certificado
+                                                                "
+                                                                frameborder="0"
+                                                            >
+                                                            <div class="h-100">
+
+                                                            </div>
+                                                            </iframe>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </td>
                                             <td>
@@ -119,9 +220,56 @@
                                                     <input
                                                         type="checkbox"
                                                         class="form-check-input"
-                                                        checked
                                                     />
-                                                    <a href="">Ver</a>
+                                                    <a data-toggle="modal"
+                                                        :data-target="
+                                                            '.proyecto' +
+                                                            alumno.id_usu
+                                                        ">
+                                                    Ver
+                                                    </a>
+                                                </div>
+                                                <div
+                                                    :class="
+                                                        'modal fade bd-example-modal-lg proyecto' +
+                                                        alumno.id_usu
+                                                    "
+                                                    tabindex="-1"
+                                                    role="dialog"
+                                                    aria-labelledby="myLargeModalLabel"
+                                                    aria-hidden="true"
+                                                >
+                                                    <div
+                                                        class="modal-dialog  modal-lg"
+                                                        role="document"
+                                                    >
+                                                        <div
+                                                            class="modal-content"
+                                                        >
+                                                            <div
+                                                                v-if="
+                                                                    alumno.url_proyecto ==
+                                                                    null
+                                                                "
+                                                            >
+                                                                El alumno aun no
+                                                                a entregado el
+                                                                documento
+                                                                respectivo
+                                                            </div>
+                                                            <iframe
+                                                                width="100%" height="600"
+                                                                :src="
+                                                                    alumno.url_proyecto
+                                                                "
+                                                                frameborder="0"
+                                                            >
+                                                            <div class="h-100">
+
+                                                            </div>
+                                                            </iframe>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </td>
                                             <td>A</td>
@@ -169,14 +317,14 @@ export default {
                 .then((response) => {
                     console.log(response.data);
                     this.carreras = response.data;
-
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
         async alerta() {
-            var carreraId = document.getElementById('exampleFormControlSelect1').value
+            var carreraId = document.getElementById('exampleFormControlSelect1')
+                .value;
             if (carreraId == null) {
                 carreraId = 1;
             }
@@ -189,7 +337,7 @@ export default {
             console.log(
                 document.getElementById('exampleFormControlSelect1').value
             );
-            
+
             await axios
                 .post(
                     'https://senati.herokuapp.com/api/careers-students/',

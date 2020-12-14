@@ -28,7 +28,7 @@
       </ul>
     </div>
   </nav>
-  <router-view/>
+  <router-view class="h-100"/>
   </div>
 </template>
 <script>
