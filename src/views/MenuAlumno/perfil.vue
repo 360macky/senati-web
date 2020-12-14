@@ -1,7 +1,7 @@
 <template>
     <div class="w-100">
         <div id="content">
-            <section>
+            <section style="padding-bottom:103px">
                 <div class="container py-3 mb-3">
                     <div class="row gutters-sm" style="padding-top: 90px">
                         <div class="col-md-4 mb-3">
@@ -283,7 +283,7 @@
                     </div>
                 </div>
             </section>
-            <footer class="bg-dark p-3 mt-3" style="bottom: 0">
+            <footer class="bg-dark p-3 mt-3" style="bottom: 0;">
                 <p class="text-light text-center">Copyright 2020 SENATI</p>
             </footer>
         </div>

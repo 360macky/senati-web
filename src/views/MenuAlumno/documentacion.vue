@@ -150,7 +150,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="card h-100">
                                                         <div v-if="this.Certificado.estado == false">No hay contenido</div>
-                                                        <img  v-if="this.Certificado.urlCertificado == ''" src="../../assets/loading.gif"/>
+                                                        <img class="h-100"  v-if="this.Certificado.urlCertificado == ''" src="../../assets/loading.gif"/>
                                                         <iframe 
                                                             class="h-100"
                                                             :src="this.Certificado.urlCertificado"
