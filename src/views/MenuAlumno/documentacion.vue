@@ -29,7 +29,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="">
                         <div class="col-lg-12">
                                 <div class="card mt-3">
                                     <div class="card-header">
@@ -38,7 +38,7 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <div class="row">
-                                                <div class="col">
+                                                <div class="col-lg-6">
                                                     <label
                                                         for="exampleFormControlFile1"
                                                         >Agregue su DNI</label
@@ -80,15 +80,18 @@
                                                     </button>
                                                 </div>
 
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-6 ">
                                                     <div class="card h-100">
-                                                        <div v-if="this.Dni.estado == false">No hay contenido</div>
-                                                        <img v-if="this.Dni.urlDni == ''" src="../../assets/loading.gif"/>
+                                                        
+                                                        <div v-if="this.Dni.urlDni == null">No hay contenido</div>
+                                                        <img class="w-100" v-if="this.Dni.urlDni == ''" src="../../assets/senatiLoading.gif"/>
                                                         <iframe
+                                                            v-if="this.Dni.urlDni != '' && this.Dni.urlDni != null"
                                                             class="h-100"
                                                             :src="this.Dni.urlDni"
                                                         >
                                                         </iframe>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,9 +152,10 @@
 
                                                 <div class="col-lg-6">
                                                     <div class="card h-100">
-                                                        <div v-if="this.Certificado.estado == false">No hay contenido</div>
-                                                        <img class="h-100"  v-if="this.Certificado.urlCertificado == ''" src="../../assets/loading.gif"/>
+                                                        <div v-if="this.Certificado.urlCertificado == null">No hay contenido</div>
+                                                        <img class="w-100"  v-if="this.Certificado.urlCertificado == ''" src="../../assets/senatiLoading.gif"/>
                                                         <iframe 
+                                                            v-if="this.Certificado.urlCertificado != '' && this.Certificado.urlCertificado != null"
                                                             class="h-100"
                                                             :src="this.Certificado.urlCertificado"
                                                         >
@@ -219,9 +223,10 @@
 
                                                 <div class="col-lg-6">
                                                     <div class="card h-100">
-                                                        <div v-if="this.Proyecto.estado == false">No hay contenido</div>
-                                                        <img v-if="this.Proyecto.urlProyecto == ''" src="../../assets/loading.gif"/>
-                                                        <iframe
+                                                        <div v-if="this.Proyecto.urlProyecto == null">No hay contenido</div>
+                                                        <img class="w-100" v-if="this.Proyecto.urlProyecto == ''" src="../../assets/senatiLoading.gif"/>
+                                                        <iframe 
+                                                            v-if="this.Proyecto.urlProyecto != '' && this.Proyecto.urlProyecto != null"
                                                             class="h-100"
                                                             :src="this.Proyecto.urlProyecto"
                                                         >
@@ -287,7 +292,7 @@ export default {
         handleFileUploadDni() {
             this.Dni.dni = this.$refs.dni.files[0];
             this.Dni.dniName = this.$refs.dni.files[0].name;
-            if(this.Dni.urlDni == ''){
+            if(this.Dni.urlDni ==  ('', null)){
                 this.Dni.urlDni =  URL.createObjectURL(this.Dni.dni);
             }
             console.log(this.urlDni);
@@ -295,7 +300,7 @@ export default {
         handleFileUploadCertidicadoalificaciones() {
             this.Certificado.certificadoName = this.$refs.certificado.files[0].name;
             this.Certificado.certificado = this.$refs.certificado.files[0];
-            if(this.Certificado.urlCertificado == ''){
+            if(this.Certificado.urlCertificado ==  ('', null)){
                 this.Certificado.urlCertificado =  URL.createObjectURL(this.Certificado.certificado);
             }
             console.log(this.urlCertificado);
@@ -304,7 +309,7 @@ export default {
             console.log("Se empezo a ejecutar la funcion 'handleFileUploadProyecto()' ")
             this.Proyecto.proyectoName = this.$refs.proyecto.files[0].name;
             this.Proyecto.proyecto = this.$refs.proyecto.files[0];
-            if(this.Proyecto.urlProyecto == ''){
+            if(this.Proyecto.urlProyecto == ('', null)){
                 this.Proyecto.urlProyecto  =  URL.createObjectURL(this.Proyecto.proyecto);
             }
         },
@@ -345,16 +350,25 @@ export default {
                             if(response.data.success == true){
                             this.Dni.urlDni = response.data.document_url
                             this.Dni.estado = true;
+                            }else{
+                                this.Dni.urlDni = null
                             }
                         }else if(url == "https://senati.herokuapp.com/api/get-document/cert.php"){
                             if(response.data.success == true){
                             this.Certificado.urlCertificado = response.data.document_url
+                            console.log(this.Certificado.urlCertificado)
                             this.Certificado.estado = true;
+                            }
+                            else{
+                                this.Certificado.urlCertificado = null
                             }
                         }else if(url == "https://senati.herokuapp.com/api/get-document/proy.php"){
                             if(response.data.success == true){
                             this.Proyecto.urlProyecto = response.data.document_url
+                            console.log(this.Proyecto.urlProyecto)
                             this.Proyecto.estado = true;
+                            }else{
+                                this.Proyecto.urlProyecto = null;
                             }
                         }
                     })
@@ -362,6 +376,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-
-</style>

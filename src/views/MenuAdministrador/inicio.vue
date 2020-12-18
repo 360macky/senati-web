@@ -18,7 +18,7 @@
               <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
             <div class="card-footer">
-              <a href="" class="btn btn-primary btn-block">Ir a Documentación</a>
+              <router-link to="/MenuAdmin/Documentacion" class="btn btn-primary btn-block">Ir a Documentación</router-link>
             </div>
           </div>
 
@@ -29,7 +29,7 @@
               <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
             </div>
             <div class="card-footer">
-              <a href="" class="btn btn-primary btn-block">Ir a Mantenimiento</a>
+              <router-link to="/MenuAdmin/Mantenimiento" class="btn btn-primary btn-block">Ir a Mantenimiento</router-link>
             </div>
           </div>
 
@@ -40,7 +40,7 @@
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
             </div>
             <div class="card-footer">
-              <a href="" class="btn btn-primary btn-block">Ir a Seguimiento</a>
+              <router-link to="/MenuAdmin/Seguimiento"  class="btn btn-primary btn-block">Ir a Seguimiento</router-link>
             </div>
           </div>
 

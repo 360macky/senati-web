@@ -49,35 +49,39 @@
                                     Backup
                                 </button>
                             </div>
-                          <div class="col-lg-4"></div>
-                            
+                            <div class="col-lg-4"></div>
+
                             <div class="col-lg-4 mt-3">
-                              
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span
-                                            class="input-group-text"
-                                            id="inputGroupFileAddon01"
-                                            >Upload</span
+                                        <button
+                                            class="btn btn-outline-secondary"
+                                            type="button"
+                                            v-on:click="submitFile()"
                                         >
+                                            Enviar
+                                        </button>
                                     </div>
                                     <div class="custom-file">
                                         <input
+                                            accept=".xlsx,.xls"
                                             type="file"
                                             class="custom-file-input"
-                                            id="inputGroupFile01"
-                                            aria-describedby="inputGroupFileAddon01"
+                                            id="customFileLangHTML"
+                                            ref="excel"
+                                            v-on:change="
+                                                handleFileUploadExcel()
+                                            "
                                         />
                                         <label
                                             class="custom-file-label"
-                                            for="inputGroupFile01"
-                                            >Cargar alumnos</label
+                                            for="inputGroupFile03"
+                                            data-browse="Elegir"
+                                            >{{ this.Excel.ExcelName }}</label
                                         >
                                     </div>
                                 </div>
-                              
                             </div>
-                            
                         </div>
 
                         <hr class="my-4" />
@@ -295,6 +299,43 @@
         </div>
     </div>
 </template>
+<script>
+import axios from 'axios';
+export default {
+    
+    data: () => ({
+        Excel: {
+            Excel: null,
+            ExcelName: 'Selecciona un archivo',
+            estado: false,
+        },
+        ContentType:{
+            headers: {'Content-Type': 'multipart/form-data'}
+        }
+    }),
+    methods: {
+        handleFileUploadExcel() {
+            console.log('se ejecuta la funcion');
+            this.Excel.Excel = this.$refs.excel.files[0];
+            this.Excel.ExcelName = this.$refs.excel.files[0].name;
+        },
+        async submitFile() {
+            var formData = new FormData();
+            // let fs = require('fs');
+            formData.append('file',this.Excel.Excel);
+            console.log(formData.get('file'));
+
+            await axios.post("https://senati.herokuapp.com/api/excel/admin/uploadB.php",formData,this.ContentType)
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+    },
+};
+</script>
 <style scoped>
 body {
     font-family: 'Didact Gothic', sans-serif;
