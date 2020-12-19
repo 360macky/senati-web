@@ -31,214 +31,297 @@
 
                     <div class="">
                         <div class="col-lg-12">
-                                <div class="card mt-3">
-                                    <div class="card-header">
-                                        <h4>DNI</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-6">
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h4>DNI</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label
+                                                    for="exampleFormControlFile1"
+                                                    >Agregue su DNI</label
+                                                >
+                                                <div class="custom-file">
+                                                    <input
+                                                        type="file"
+                                                        class="custom-file-input"
+                                                        id="customFileLangHTML"
+                                                        ref="dni"
+                                                        v-on:change="
+                                                            handleFileUploadDni()
+                                                        "
+                                                    />
                                                     <label
-                                                        for="exampleFormControlFile1"
-                                                        >Agregue su DNI</label
+                                                        class="custom-file-label text-left"
+                                                        for="customFileLangHTML"
+                                                        data-browse="Elegir"
+                                                        >{{
+                                                            Dni.dniName
+                                                        }}</label
                                                     >
-                                                    <div class="custom-file">
-                                                        <input 
-                                                            type="file" 
-                                                            class="custom-file-input" 
-                                                            id="customFileLangHTML"
-                                                            ref="dni"
-                                                            v-on:change="handleFileUploadDni()">
-                                                        <label class="custom-file-label text-left" for="customFileLangHTML" data-browse="Elegir">{{Dni.dniName}}</label>
-                                                    </div>
-                                                    <ul class="list-group mt-3">
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Cras justo odio
-                                                        </li>
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Dapibus ac facilisis
-                                                            in
-                                                        </li>
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Morbi leo risus
-                                                        </li>
-                                                    </ul>
-
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-info btn-lg mt-3"
-                                                        v-on:click="submitFile('DNI')"
-                                                    >
-                                                        Enviar
-                                                    </button>
                                                 </div>
+                                                <ul class="list-group mt-3">
+                                                    <li class="list-group-item">
+                                                        Cras justo odio
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        Dapibus ac facilisis in
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        Morbi leo risus
+                                                    </li>
+                                                </ul>
 
-                                                <div class="col-lg-6 ">
-                                                    <div class="card h-100">
-                                                        
-                                                        <div v-if="this.Dni.urlDni == null">No hay contenido</div>
-                                                        <img class="w-100" v-if="this.Dni.urlDni == ''" src="../../assets/senatiLoading.gif"/>
-                                                        <iframe
-                                                            v-if="this.Dni.urlDni != '' && this.Dni.urlDni != null"
-                                                            class="h-100"
-                                                            :src="this.Dni.urlDni"
-                                                        >
-                                                        </iframe>
-                                                        
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-info btn-lg mt-3"
+                                                    v-on:click="
+                                                        submitFile('DNI')
+                                                    "
+                                                >
+                                                    Enviar
+                                                </button>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="card h-100">
+                                                    <div
+                                                        v-if="
+                                                            this.Dni.urlDni ==
+                                                            null
+                                                        "
+                                                    >
+                                                        No hay contenido
                                                     </div>
+                                                    <img
+                                                        class="w-100"
+                                                        v-if="
+                                                            this.Dni.urlDni ==
+                                                            ''
+                                                        "
+                                                        src="../../assets/senatiLoading.gif"
+                                                    />
+                                                    <iframe
+                                                        v-if="
+                                                            this.Dni.urlDni !=
+                                                                '' &&
+                                                            this.Dni.urlDni !=
+                                                                null
+                                                        "
+                                                        class="h-100"
+                                                        :src="this.Dni.urlDni"
+                                                    >
+                                                    </iframe>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="card mt-3">
-                                    <div class="card-header">
-                                        <h4>Certificado de calificaciones</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col">
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h4>Certificado de calificaciones</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label
+                                                    for="exampleFormControlFile1"
+                                                    >Agregue su
+                                                    Certificado</label
+                                                >
+                                                <div class="custom-file">
+                                                    <input
+                                                        type="file"
+                                                        class="custom-file-input"
+                                                        id="customFileLangHTML"
+                                                        ref="certificado"
+                                                        v-on:change="
+                                                            handleFileUploadCertidicadoalificaciones()
+                                                        "
+                                                    />
                                                     <label
-                                                        for="exampleFormControlFile1"
-                                                        >Agregue su
-                                                        Certificado</label
+                                                        class="custom-file-label text-left"
+                                                        for="customFileLangHTML"
+                                                        data-browse="Elegir"
+                                                        >{{
+                                                            Certificado.certificadoName
+                                                        }}</label
                                                     >
-                                                    <div class="custom-file">
-                                                        <input 
-                                                            type="file" 
-                                                            class="custom-file-input" 
-                                                            id="customFileLangHTML"
-                                                            ref="certificado"
-                                                            v-on:change="handleFileUploadCertidicadoalificaciones()">
-                                                        <label class="custom-file-label text-left" for="customFileLangHTML" data-browse="Elegir">{{Certificado.certificadoName}}</label>
-                                                    </div>
-
-                                                    <ul class="list-group mt-3">
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Cras justo odio
-                                                        </li>
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Dapibus ac facilisis
-                                                            in
-                                                        </li>
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Morbi leo risus
-                                                        </li>
-                                                    </ul>
-
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-info btn-lg mt-3"
-                                                        v-on:click="submitFile('CERTIFICADO')" 
-                                                    >
-                                                        Enviar
-                                                    </button>
                                                 </div>
 
-                                                <div class="col-lg-6">
-                                                    <div class="card h-100">
-                                                        <div v-if="this.Certificado.urlCertificado == null">No hay contenido</div>
-                                                        <img class="w-100"  v-if="this.Certificado.urlCertificado == ''" src="../../assets/senatiLoading.gif"/>
-                                                        <iframe 
-                                                            v-if="this.Certificado.urlCertificado != '' && this.Certificado.urlCertificado != null"
-                                                            class="h-100"
-                                                            :src="this.Certificado.urlCertificado"
-                                                        >
-                                                        </iframe>
+                                                <ul class="list-group mt-3">
+                                                    <li class="list-group-item">
+                                                        Cras justo odio
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        Dapibus ac facilisis in
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        Morbi leo risus
+                                                    </li>
+                                                </ul>
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-info btn-lg mt-3"
+                                                    v-on:click="
+                                                        submitFile(
+                                                            'CERTIFICADO'
+                                                        )
+                                                    "
+                                                >
+                                                    Enviar
+                                                </button>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="card h-100">
+                                                    <div
+                                                        v-if="
+                                                            this.Certificado
+                                                                .urlCertificado ==
+                                                            null
+                                                        "
+                                                    >
+                                                        No hay contenido
                                                     </div>
+                                                    <img
+                                                        class="w-100"
+                                                        v-if="
+                                                            this.Certificado
+                                                                .urlCertificado ==
+                                                            ''
+                                                        "
+                                                        src="../../assets/senatiLoading.gif"
+                                                    />
+                                                    <iframe
+                                                        v-if="
+                                                            this.Certificado
+                                                                .urlCertificado !=
+                                                                '' &&
+                                                            this.Certificado
+                                                                .urlCertificado !=
+                                                                null
+                                                        "
+                                                        class="h-100"
+                                                        :src="
+                                                            this.Certificado
+                                                                .urlCertificado
+                                                        "
+                                                    >
+                                                    </iframe>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mt-3">
-                                    <div class="card-header">
-                                        <h4>
-                                            <!-- Copia del Certificado de
+                            </div>
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h4>
+                                        <!-- Copia del Certificado de
                                             Calificación Profesional -->
-                                            PROYECTO
-                                        </h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col">
+                                        PROYECTO
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label
+                                                    for="exampleFormControlFile1"
+                                                    >Agregue su Proyecto</label
+                                                >
+                                                <div class="custom-file">
+                                                    <input
+                                                        type="file"
+                                                        class="custom-file-input"
+                                                        id="customFileLangHTML"
+                                                        ref="proyecto"
+                                                        v-on:change="
+                                                            handleFileUploadProyecto()
+                                                        "
+                                                    />
                                                     <label
-                                                        for="exampleFormControlFile1"
-                                                        >Agregue su
-                                                        Proyecto</label
+                                                        class="custom-file-label text-left"
+                                                        for="customFileLangHTML"
+                                                        data-browse="Elegir"
+                                                        >{{
+                                                            Proyecto.proyectoName
+                                                        }}</label
                                                     >
-                                                    <div class="custom-file">
-                                                        <input 
-                                                            type="file" 
-                                                            class="custom-file-input" 
-                                                            id="customFileLangHTML"
-                                                            ref="proyecto"
-                                                            v-on:change="handleFileUploadProyecto()">
-                                                        <label class="custom-file-label text-left" for="customFileLangHTML" data-browse="Elegir">{{Proyecto.proyectoName}}</label>
-                                                    </div>
-
-                                                    <ul class="list-group mt-3">
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Cras justo odio
-                                                        </li>
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Dapibus ac facilisis
-                                                            in
-                                                        </li>
-                                                        <li
-                                                            class="list-group-item"
-                                                        >
-                                                            Morbi leo risus
-                                                        </li>
-                                                    </ul>
-
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-info btn-lg mt-3"
-                                                        v-on:click="submitFile('PROYECTO')"
-                                                    >
-                                                        Enviar
-                                                    </button>
                                                 </div>
 
-                                                <div class="col-lg-6">
-                                                    <div class="card h-100">
-                                                        <div v-if="this.Proyecto.urlProyecto == null">No hay contenido</div>
-                                                        <img class="w-100" v-if="this.Proyecto.urlProyecto == ''" src="../../assets/senatiLoading.gif"/>
-                                                        <iframe 
-                                                            v-if="this.Proyecto.urlProyecto != '' && this.Proyecto.urlProyecto != null"
-                                                            class="h-100"
-                                                            :src="this.Proyecto.urlProyecto"
-                                                        >
+                                                <ul class="list-group mt-3">
+                                                    <li class="list-group-item">
+                                                        Cras justo odio
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        Dapibus ac facilisis in
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        Morbi leo risus
+                                                    </li>
+                                                </ul>
 
-                                                        </iframe>
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-info btn-lg mt-3"
+                                                    v-on:click="
+                                                        submitFile('PROYECTO')
+                                                    "
+                                                >
+                                                    Enviar
+                                                </button>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="card h-100">
+                                                    <div
+                                                        v-if="
+                                                            this.Proyecto
+                                                                .urlProyecto ==
+                                                            null
+                                                        "
+                                                    >
+                                                        No hay contenido
                                                     </div>
+                                                    <img
+                                                        class="w-100"
+                                                        v-if="
+                                                            this.Proyecto
+                                                                .urlProyecto ==
+                                                            ''
+                                                        "
+                                                        src="../../assets/senatiLoading.gif"
+                                                    />
+                                                    <iframe
+                                                        v-if="
+                                                            this.Proyecto
+                                                                .urlProyecto !=
+                                                                '' &&
+                                                            this.Proyecto
+                                                                .urlProyecto !=
+                                                                null
+                                                        "
+                                                        class="h-100"
+                                                        :src="
+                                                            this.Proyecto
+                                                                .urlProyecto
+                                                        "
+                                                    >
+                                                    </iframe>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -251,128 +334,156 @@
     </div>
 </template>
 <script>
-
 import axios from 'axios';
 
-
 export default {
-    created(){
-      console.log("Test");
-      this.getDocument("DNI")
-      this.getDocument("PROYECTO")
-      this.getDocument("CERTIFICADO")
+    created() {
+        console.log('Test');
+        this.getDocument('DNI');
+        this.getDocument('PROYECTO');
+        this.getDocument('CERTIFICADO');
     },
- 
+
     data: () => ({
         //recibo: '',
-        Dni:{
-            dni : "",
-            urlDni : "",
-            dniName : "Selecciona un archivo",
-            estado : false
+        Dni: {
+            dni: '',
+            urlDni: '',
+            dniName: 'Selecciona un archivo',
+            estado: false,
         },
-        Certificado:{
-            certificado : "",
-            urlCertificado : "",
-            certificadoName : "Selecciona un archivo",
-            estado : false
+        Certificado: {
+            certificado: '',
+            urlCertificado: '',
+            certificadoName: 'Selecciona un archivo',
+            estado: false,
         },
-        Proyecto:{
-            proyecto : "",
-            urlProyecto : "",
-            proyectoName : "Selecciona un archivo",
-            estado : false
+        Proyecto: {
+            proyecto: '',
+            urlProyecto: '',
+            proyectoName: 'Selecciona un archivo',
+            estado: false,
         },
-        ContentType:{
-            headers: {'Content-Type': 'multipart/form-data'}
-        }
-        
+        ContentType: {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        },
     }),
     methods: {
         handleFileUploadDni() {
             this.Dni.dni = this.$refs.dni.files[0];
             this.Dni.dniName = this.$refs.dni.files[0].name;
-            if(this.Dni.urlDni ==  ('', null)){
-                this.Dni.urlDni =  URL.createObjectURL(this.Dni.dni);
+            if (this.Dni.urlDni == false) {
+                this.Dni.urlDni = URL.createObjectURL(this.Dni.dni);
             }
-            console.log(this.urlDni);
+            console.log(this.Dni.urlDni);
         },
         handleFileUploadCertidicadoalificaciones() {
             this.Certificado.certificadoName = this.$refs.certificado.files[0].name;
             this.Certificado.certificado = this.$refs.certificado.files[0];
-            if(this.Certificado.urlCertificado ==  ('', null)){
-                this.Certificado.urlCertificado =  URL.createObjectURL(this.Certificado.certificado);
+            if (this.Certificado.estado == false) {
+                this.Certificado.urlCertificado = URL.createObjectURL(
+                    this.Certificado.certificado
+                );
             }
-            console.log(this.urlCertificado);
+            console.log(this.Certificado.urlCertificado);
         },
         handleFileUploadProyecto() {
-            console.log("Se empezo a ejecutar la funcion 'handleFileUploadProyecto()' ")
+            console.log(
+                "Se empezo a ejecutar la funcion 'handleFileUploadProyecto()' "
+            );
             this.Proyecto.proyectoName = this.$refs.proyecto.files[0].name;
             this.Proyecto.proyecto = this.$refs.proyecto.files[0];
-            if(this.Proyecto.urlProyecto == ('', null)){
-                this.Proyecto.urlProyecto  =  URL.createObjectURL(this.Proyecto.proyecto);
+            if (this.Proyecto.urlProyecto == false) {
+                this.Proyecto.urlProyecto = URL.createObjectURL(
+                    this.Proyecto.proyecto
+                );
             }
+            console.log(this.Proyecto.proyecto)
         },
-        submitFile(type){
+        submitFile(type) {
+            this.makeToast("primary",type," se está enviando...")
             let formData = new FormData();
-            formData.append('id_username', localStorage.getItem("UserId"));
-            formData.append('type',type);
-            if(type == "DNI"){
+            formData.append('id_username', localStorage.getItem('UserId'));
+            formData.append('type', type);
+            if (type == 'DNI') {
                 formData.append('document', this.Dni.dni);
-            }else if(type == 'CERTIFICADO'){
+            } else if (type == 'CERTIFICADO') {
                 formData.append('document', this.Certificado.certificado);
-            }else if(type == 'PROYECTO'){
+            } else if (type == 'PROYECTO') {
                 formData.append('document', this.Proyecto.proyecto);
             }
-            axios.post( "https://senati-api.000webhostapp.com/upload.php", formData, this.ContentType
-            ).then(response=>{
-                console.log(response.data)
-            }).catch(error=>{
-                console.log('FAILURE!!');
-                console.log(error)
-            });
+            
+            axios
+                .post(
+                    'https://senati-api.000webhostapp.com/upload.php',
+                    formData,
+                    this.ContentType
+                )
+                .then((response) => {
+                    console.log(response.data);
+                    this.makeToast("success",type," se envió correctamente")
+                })
+                .catch((error) => {
+                    console.log('FAILURE!!');
+                    console.log(error);
+                });
         },
-        async getDocument(type){
-            if(type == "DNI"){
-                await this.Peticion("https://senati.herokuapp.com/api/get-document/dni.php")
-            }else if(type == "CERTIFICADO"){
-                await this.Peticion("https://senati.herokuapp.com/api/get-document/cert.php")
-            }else if(type == "PROYECTO"){
-                await this.Peticion("https://senati.herokuapp.com/api/get-document/proy.php")
+        async getDocument(type) {
+            if (type == 'DNI') {
+                await this.Peticion(
+                    'https://senati.herokuapp.com/api/get-document/dni.php'
+                );
+            } else if (type == 'CERTIFICADO') {
+                await this.Peticion(
+                    'https://senati.herokuapp.com/api/get-document/cert.php'
+                );
+            } else if (type == 'PROYECTO') {
+                await this.Peticion(
+                    'https://senati.herokuapp.com/api/get-document/proy.php'
+                );
             }
         },
-        async Peticion(url){
-            var user= new FormData();
-            user.append("id",localStorage.getItem("UserId"));
-            await axios.post(url,user, this.ContentType)
-                    .then(response=>{
-                        if(url == "https://senati.herokuapp.com/api/get-document/dni.php"){
-                            if(response.data.success == true){
-                            this.Dni.urlDni = response.data.document_url
-                            this.Dni.estado = true;
-                            }else{
-                                this.Dni.urlDni = null
-                            }
-                        }else if(url == "https://senati.herokuapp.com/api/get-document/cert.php"){
-                            if(response.data.success == true){
-                            this.Certificado.urlCertificado = response.data.document_url
-                            console.log(this.Certificado.urlCertificado)
-                            this.Certificado.estado = true;
-                            }
-                            else{
-                                this.Certificado.urlCertificado = null
-                            }
-                        }else if(url == "https://senati.herokuapp.com/api/get-document/proy.php"){
-                            if(response.data.success == true){
-                            this.Proyecto.urlProyecto = response.data.document_url
-                            console.log(this.Proyecto.urlProyecto)
-                            this.Proyecto.estado = true;
-                            }else{
-                                this.Proyecto.urlProyecto = null;
-                            }
-                        }
-                    })
-        }
-    }
-}
+        async Peticion(url) {
+            var user = new FormData();
+            user.append('id', localStorage.getItem('UserId'));
+            await axios.post(url, user, this.ContentType).then((response) => {
+                if (url == 'https://senati.herokuapp.com/api/get-document/dni.php')
+                {
+                    if (response.data.success == true) {
+                        this.Dni.urlDni = response.data.document_url;
+                        this.Dni.estado = true;
+                    } else {
+                        this.Dni.urlDni = null;
+                    }
+                } else if (url == 'https://senati.herokuapp.com/api/get-document/cert.php')
+                {
+                    if (response.data.success == true) {
+                        this.Certificado.urlCertificado = response.data.document_url;
+                        console.log(this.Certificado.urlCertificado);
+                        this.Certificado.estado = true;
+                    } else {
+                        this.Certificado.urlCertificado = null;
+                    }
+                } else if (url == 'https://senati.herokuapp.com/api/get-document/proy.php')
+                {
+                    if (response.data.success == true) {
+                        this.Proyecto.urlProyecto = response.data.document_url;
+                        console.log(this.Proyecto.urlProyecto);
+                        this.Proyecto.estado = true;
+                    } else {
+                        this.Proyecto.urlProyecto = null;
+                    }
+                    console.log(response.data)
+                }
+            });
+        },
+        makeToast(variant = null,type,add) {
+            this.$bvToast.toast('Su '+type+ add , {
+                title: `Variant ${variant || 'default'}`,
+                variant: variant,
+                solid: true,
+            });
+        },
+    },
+};
 </script>
