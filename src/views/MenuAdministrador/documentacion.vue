@@ -330,8 +330,9 @@ export default {
             }
             var dataForm = new FormData();
             dataForm.append('id_carrera', carreraId);
-            dataForm.append('from', 0);
-            dataForm.append('to', 10);
+            dataForm.append('rows_quantity', 1);
+            dataForm.append('pages', null);
+            dataForm.append('page_number', 1);
             document.getElementById('option-disable').disabled = true;
             // document.getElementById('option-disable').value);
             console.log(
@@ -345,7 +346,7 @@ export default {
                     this.ContentType
                 )
                 .then((response) => {
-                    console.log(response.data);
+                    console.log(response);
                     this.alumnos = response.data;
                 })
                 .catch((error) => {

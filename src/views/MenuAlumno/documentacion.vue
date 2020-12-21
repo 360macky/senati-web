@@ -401,7 +401,7 @@ export default {
             console.log(this.Proyecto.proyecto)
         },
         submitFile(type) {
-            this.makeToast("primary",type," se está enviando...")
+            this.makeToast("Enviando","primary",type," se está enviando...")
             let formData = new FormData();
             formData.append('id_username', localStorage.getItem('UserId'));
             formData.append('type', type);
@@ -421,11 +421,17 @@ export default {
                 )
                 .then((response) => {
                     console.log(response.data);
-                    this.makeToast("success",type," se envió correctamente")
+                    if(response.data.success == true){
+                        this.makeToast("BUENAS NOTICIAS","success",type," se envió correctamente.")
+                    }else{
+                        this.makeToast("LO SENTIMOS","danger",type," ya ha sido enviado anteriormente, no puede enviarlo de nuevo.")
+                    }
+                    
                 })
                 .catch((error) => {
                     console.log('FAILURE!!');
                     console.log(error);
+                    this.makeToast("LO SENTIMOS","danger",type," no pudo ser enviado por problemas tecnicos.")
                 });
         },
         async getDocument(type) {
@@ -477,9 +483,9 @@ export default {
                 }
             });
         },
-        makeToast(variant = null,type,add) {
+        makeToast(title ,variant = null,type,add) {
             this.$bvToast.toast('Su '+type+ add , {
-                title: `Variant ${variant || 'default'}`,
+                title: title,//`Variant ${variant || 'default'}`,
                 variant: variant,
                 solid: true,
             });

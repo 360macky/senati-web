@@ -87,7 +87,7 @@ export default {
             .then(response => {
                 sessionStorage.setItem("session",response.data.success + date.getTime())
                 sessionStorage.setItem("sessionActive",true);
-                //localStorage.setItem("email",response.data.userData.email_usu)
+                localStorage.setItem("email",response.data.userData.email_usu)
                 localStorage.setItem("apellido",response.data.userData.ape_usu)
                 localStorage.setItem("nombre",response.data.userData.nom_usu)
                 localStorage.setItem("FullName",response.data.userData.nom_usu +" "+ response.data.userData.ape_usu);

@@ -13,19 +13,19 @@
               <div class="col-lg-8">
                 <ul class="list-group">
                   <li class="list-group-item">
-                    <span class="text-success">ID:</span> 5672345
+                    <span class="text-success">ID:</span> {{codAlu}}
                     <a href="#" class="float-right"><i class="fas fa-edit mr-2"></i>Editar</a>
                   </li>
                   <li class="list-group-item">
-                    <span class="text-success">Nombres:</span> Hector Marcos
+                    <span class="text-success">Nombres:</span> {{nombre}}
                     <a href="#" class="float-right"><i class="fas fa-edit mr-2"></i>Editar</a>
                   </li>
                   <li class="list-group-item">
-                    <span class="text-success">Apellidos:</span> Salas Mendoza
+                    <span class="text-success">Apellidos:</span> {{apellido}}
                     <a href="#" class="float-right"><i class="fas fa-edit mr-2"></i>Editar</a>
                   </li>
                   <li class="list-group-item">
-                    <span class="text-success">Email:</span> hectorsalas@mail.com
+                    <span class="text-success">Email:</span> {{email}}
                     <a href="#" class="float-right"><i class="fas fa-edit mr-2"></i>Editar</a>
                   </li>
                 </ul> 
@@ -37,3 +37,18 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  data:()=>({
+    email: localStorage.getItem("email"),
+    apellido: localStorage.getItem("apellido"),
+    nombre: localStorage.getItem("nombre"),
+    id: localStorage.getItem("UserId"),
+    carrera : localStorage.getItem("Carrera"),
+    sede : localStorage.getItem("Sede"),
+    telefono : localStorage.getItem("telefono"),
+    codAlu : localStorage.getItem("codAlu"),
+    FullName : localStorage.getItem("FullName")
+  })
+}
+</script>

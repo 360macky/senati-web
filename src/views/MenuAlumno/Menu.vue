@@ -38,8 +38,11 @@ export default {
   name: "Menu",
   created(){
         console.log(sessionStorage.getItem("sessionActive"))
+
         if(sessionStorage.getItem("sessionActive") != "true"){
             this.$router.push("/login")
+        }else if(localStorage.getItem("rol") == "admin"){
+          this.$router.push("/MenuAdmin/Inicio")
         }
     },
   data: () => ({
