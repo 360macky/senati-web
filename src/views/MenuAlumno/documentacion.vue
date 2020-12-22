@@ -3,7 +3,8 @@
         <div id="content">
             <section>
                 <div class="container py-3">
-                    <div>
+                    <div v-if="Dni.urlDni == false || Certificado.urlCertificado == false || Proyecto.urlProyecto == false">
+                        
                         <div class="col-lg-12">
                             <h1>Documentación</h1>
                             <p class="text-muted">
@@ -372,7 +373,7 @@ export default {
         handleFileUploadDni() {
             this.Dni.dni = this.$refs.dni.files[0];
             this.Dni.dniName = this.$refs.dni.files[0].name;
-            if (this.Dni.urlDni == false) {
+            if (this.Dni.estado == false) {
                 this.Dni.urlDni = URL.createObjectURL(this.Dni.dni);
             }
             console.log(this.Dni.urlDni);
@@ -393,7 +394,7 @@ export default {
             );
             this.Proyecto.proyectoName = this.$refs.proyecto.files[0].name;
             this.Proyecto.proyecto = this.$refs.proyecto.files[0];
-            if (this.Proyecto.urlProyecto == false) {
+            if (this.Proyecto.estado == false) {
                 this.Proyecto.urlProyecto = URL.createObjectURL(
                     this.Proyecto.proyecto
                 );
@@ -457,6 +458,7 @@ export default {
                 {
                     if (response.data.success == true) {
                         this.Dni.urlDni = response.data.document_url;
+                        console.log("DNI: "+this.Dni.urlDni)
                         this.Dni.estado = true;
                     } else {
                         this.Dni.urlDni = null;
@@ -464,8 +466,8 @@ export default {
                 } else if (url == 'https://senati.herokuapp.com/api/get-document/cert.php')
                 {
                     if (response.data.success == true) {
-                        this.Certificado.urlCertificado = response.data.document_url;
-                        console.log(this.Certificado.urlCertificado);
+                        this.Certificado.urlCertificado = response.data.document_url; //"https://senati-api.000webhostapp.com/document-certificate/"+localStorage.getItem("UserId")+".pdf";//
+                        console.log("Certificado: "+this.Certificado.urlCertificado);
                         this.Certificado.estado = true;
                     } else {
                         this.Certificado.urlCertificado = null;
@@ -474,7 +476,7 @@ export default {
                 {
                     if (response.data.success == true) {
                         this.Proyecto.urlProyecto = response.data.document_url;
-                        console.log(this.Proyecto.urlProyecto);
+                        console.log("Proyecto: "+this.Proyecto.urlProyecto);
                         this.Proyecto.estado = true;
                     } else {
                         this.Proyecto.urlProyecto = null;

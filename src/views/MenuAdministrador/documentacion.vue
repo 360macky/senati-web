@@ -95,7 +95,6 @@
                                                     <input
                                                         type="checkbox"
                                                         class="form-check-input"
-                                                        checked
                                                     />
                                                     <a
                                                         data-toggle="modal"
@@ -330,8 +329,8 @@ export default {
             }
             var dataForm = new FormData();
             dataForm.append('id_carrera', carreraId);
-            dataForm.append('rows_quantity', 1);
-            dataForm.append('pages', null);
+            dataForm.append('rows_quantity', 30);
+            dataForm.append('pages', 1);
             dataForm.append('page_number', 1);
             document.getElementById('option-disable').disabled = true;
             // document.getElementById('option-disable').value);
@@ -347,7 +346,7 @@ export default {
                 )
                 .then((response) => {
                     console.log(response);
-                    this.alumnos = response.data;
+                    this.alumnos = response.data.filas;
                 })
                 .catch((error) => {
                     console.log(error);
