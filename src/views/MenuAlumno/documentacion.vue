@@ -3,7 +3,7 @@
         <div id="content">
             <section>
                 <div class="container py-3">
-                    <div v-if="Dni.urlDni == false || Certificado.urlCertificado == false || Proyecto.urlProyecto == false">
+                    <div>
                         
                         <div class="col-lg-12">
                             <h1>Documentación</h1>
@@ -11,7 +11,7 @@
                                 Agregue los documentos correspondientes
                             </p>
                         </div>
-                        <div
+                        <div v-if="Dni.estado == false || Certificado.estado == false || Proyecto.estado == false || Recibo.estado == false"
                             style="
                                 color: #721c24;
                                 background-color: #f8d7da;
@@ -32,6 +32,95 @@
 
                     <div class="">
                         <div class="col-lg-12">
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h4>RECIBO DE PAGO</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label
+                                                    for="exampleFormControlFile1"
+                                                    >Agregue su recibo de pago</label
+                                                >
+                                                <div class="custom-file">
+                                                    <input
+                                                        type="file"
+                                                        class="custom-file-input"
+                                                        id="customFileLangHTML"
+                                                        ref="recibo"
+                                                        v-on:change="
+                                                            handleFileUploadRecibo()
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="custom-file-label text-left"
+                                                        for="customFileLangHTML"
+                                                        data-browse="Elegir"
+                                                        >{{
+                                                            Recibo.reciboName
+                                                        }}</label
+                                                    >
+                                                </div>
+                                                <ul class="list-group mt-3">
+                                                    <li class="list-group-item">
+                                                        Cras justo odio
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        Dapibus ac facilisis in
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        Morbi leo risus
+                                                    </li>
+                                                </ul>
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-info btn-lg mt-3"
+                                                    v-on:click="
+                                                        submitFile('RECIBO_PAGO')
+                                                    "
+                                                >
+                                                    Enviar
+                                                </button>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="card h-100">
+                                                    <div
+                                                        v-if="
+                                                            this.Recibo.urlRecibo ==
+                                                            null
+                                                        "
+                                                    >
+                                                        No hay contenido
+                                                    </div>
+                                                    <img
+                                                        class="w-100"
+                                                        v-if="
+                                                            this.Recibo.urlRecibo ==
+                                                            ''
+                                                        "
+                                                        src="../../assets/senatiLoading.gif"
+                                                    />
+                                                    <iframe
+                                                        v-if="
+                                                            this.Recibo.urlRecibo !=
+                                                                '' &&
+                                                            this.Recibo.urlRecibo !=
+                                                                null
+                                                        "
+                                                        class="h-100"
+                                                        :src="this.Recibo.urlRecibo"
+                                                    >
+                                                    </iframe>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card mt-3">
                                 <div class="card-header">
                                     <h4>DNI</h4>
@@ -343,10 +432,17 @@ export default {
         this.getDocument('DNI');
         this.getDocument('PROYECTO');
         this.getDocument('CERTIFICADO');
+        this.getDocument('RECIBO_PAGO');
     },
 
     data: () => ({
         //recibo: '',
+        Recibo: {
+            recibo: '',
+            urlRecibo: '',
+            reciboName: 'Selecciona un archivo',
+            estado: false,
+        },
         Dni: {
             dni: '',
             urlDni: '',
@@ -370,6 +466,14 @@ export default {
         },
     }),
     methods: {
+        handleFileUploadRecibo() {
+            this.Recibo.recibo = this.$refs.recibo.files[0];
+            this.Recibo.reciboName = this.$refs.recibo.files[0].name;
+            if (this.Recibo.estado == false) {
+                this.Recibo.urlRecibo = URL.createObjectURL(this.Recibo.recibo);
+            }
+            console.log(this.Recibo.urlDni);
+        },
         handleFileUploadDni() {
             this.Dni.dni = this.$refs.dni.files[0];
             this.Dni.dniName = this.$refs.dni.files[0].name;
@@ -412,8 +516,9 @@ export default {
                 formData.append('document', this.Certificado.certificado);
             } else if (type == 'PROYECTO') {
                 formData.append('document', this.Proyecto.proyecto);
+            } else if(type == 'RECIBO_PAGO'){
+                formData.append('document', this.Recibo.recibo);
             }
-            
             axios
                 .post(
                     'https://senati-api.000webhostapp.com/upload.php',
@@ -425,7 +530,7 @@ export default {
                     if(response.data.success == true){
                         this.makeToast("BUENAS NOTICIAS","success",type," se envió correctamente.")
                     }else{
-                        this.makeToast("LO SENTIMOS","danger",type," ya ha sido enviado anteriormente, no puede enviarlo de nuevo.")
+                        this.makeToast("LO SENTIMOS","danger",type=="RECIBO_PAGO"?"RECIBO DE PAGO":type," ya ha sido enviado anteriormente, no puede enviarlo de nuevo.")
                     }
                     
                 })
@@ -447,6 +552,10 @@ export default {
             } else if (type == 'PROYECTO') {
                 await this.Peticion(
                     'https://senati.herokuapp.com/api/get-document/proy.php'
+                );
+            } else if (type == 'RECIBO_PAGO'){
+                await this.Peticion(
+                    'https://senati.herokuapp.com/api/get-document/recibopago.php'
                 );
             }
         },
@@ -480,6 +589,17 @@ export default {
                         this.Proyecto.estado = true;
                     } else {
                         this.Proyecto.urlProyecto = null;
+                    }
+                    console.log(response.data)
+                }else if (url == 'https://senati.herokuapp.com/api/get-document/recibopago.php')
+                {
+                    if (response.data.success == true) {
+                        this.Recibo.urlRecibo = response.data.document_url;
+                        console.log("RECIBO:  " + response.data)
+                        console.log("RECIBO: " + this.Recibo.urlRecibo);
+                        this.Recibo.estado = true;
+                    } else {
+                        this.Recibo.urlRecibo = null;
                     }
                     console.log(response.data)
                 }
