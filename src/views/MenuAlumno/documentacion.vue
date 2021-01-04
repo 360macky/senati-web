@@ -53,6 +53,7 @@
                                                         v-on:change="
                                                             handleFileUploadRecibo()
                                                         "
+                                                        accept=".pdf"
                                                     />
                                                     <label
                                                         class="custom-file-label text-left"
@@ -532,7 +533,6 @@ export default {
                     }else{
                         this.makeToast("LO SENTIMOS","danger",type=="RECIBO_PAGO"?"RECIBO DE PAGO":type," ya ha sido enviado anteriormente, no puede enviarlo de nuevo.")
                     }
-                    
                 })
                 .catch((error) => {
                     console.log('FAILURE!!');
