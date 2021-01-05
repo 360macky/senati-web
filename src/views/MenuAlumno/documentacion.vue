@@ -143,6 +143,7 @@
                                                         v-on:change="
                                                             handleFileUploadDni()
                                                         "
+                                                        accept=".pdf"
                                                     />
                                                     <label
                                                         class="custom-file-label text-left"
@@ -234,6 +235,7 @@
                                                         v-on:change="
                                                             handleFileUploadCertidicadoalificaciones()
                                                         "
+                                                        accept=".pdf"
                                                     />
                                                     <label
                                                         class="custom-file-label text-left"
@@ -337,6 +339,7 @@
                                                         v-on:change="
                                                             handleFileUploadProyecto()
                                                         "
+                                                        accept=".pdf"
                                                     />
                                                     <label
                                                         class="custom-file-label text-left"

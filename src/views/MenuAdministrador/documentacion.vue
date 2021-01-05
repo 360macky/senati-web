@@ -329,8 +329,7 @@ export default {
             }
             var dataForm = new FormData();
             dataForm.append('id_carrera', carreraId);
-            dataForm.append('rows_quantity', 30);
-            dataForm.append('pages', 1);
+            dataForm.append('rows_quantity', 10);
             dataForm.append('page_number', 1);
             document.getElementById('option-disable').disabled = true;
             // document.getElementById('option-disable').value);
