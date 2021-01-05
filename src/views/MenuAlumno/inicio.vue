@@ -4,13 +4,14 @@
       <div id="content">
         <section id="sec1">
           <div class="contenedor-texto" style="padding-left: 15px">
-            <h2 class="titulo">Como subir un archivo</h2>
+            <h2 class="titulo">COMO TITULARME</h2>
 
-            <p class="texto">-Entras a Subir documento</p>
-            <p class="texto">-Dar click en Seleccion Documento</p>
-            <p class="texto">-Eligir el documento a subir</p>
-            <p class="texto">-Verificar si el documento es el correcto</p>
-            <p class="texto">-Subir el archivo</p>
+            <p class="texto">-Iniciar sesion con tu id de alumno y tu DNI como contraseña.</p>
+            <p class="texto">-Dirigete a la pestaña de "Documentación".</p>
+            <p class="texto">-Sube el documento que te falte.</p>
+            <p class="texto">-Sube el documento que te falte.</p>
+            <p class="texto">-Revisa en la vista previa si es el documento correcto.</p>
+            <p class="texto">-Envía y espera la respuesta de tu coordinador.</p>
           </div>
 
           <iframe

@@ -66,13 +66,13 @@
                                                 </div>
                                                 <ul class="list-group mt-3">
                                                     <li class="list-group-item">
-                                                        Cras justo odio
+                                                        Imagen clara y distingible
                                                     </li>
                                                     <li class="list-group-item">
-                                                        Dapibus ac facilisis in
+                                                        Verifica que es el documento correcto
                                                     </li>
                                                     <li class="list-group-item">
-                                                        Morbi leo risus
+                                                        Solo formato PDF
                                                     </li>
                                                 </ul>
 
@@ -156,13 +156,13 @@
                                                 </div>
                                                 <ul class="list-group mt-3">
                                                     <li class="list-group-item">
-                                                        Cras justo odio
+                                                        Imagen clara y distingible
                                                     </li>
                                                     <li class="list-group-item">
-                                                        Dapibus ac facilisis in
+                                                        El DNI tiene que estar regularizado
                                                     </li>
                                                     <li class="list-group-item">
-                                                        Morbi leo risus
+                                                        Solo formato PDF
                                                     </li>
                                                 </ul>
 
@@ -249,13 +249,13 @@
 
                                                 <ul class="list-group mt-3">
                                                     <li class="list-group-item">
-                                                        Cras justo odio
+                                                        Imagen clara y distingible
                                                     </li>
                                                     <li class="list-group-item">
-                                                        Dapibus ac facilisis in
+                                                        Verifica que es el documento correcto
                                                     </li>
                                                     <li class="list-group-item">
-                                                        Morbi leo risus
+                                                        Solo formato PDF
                                                     </li>
                                                 </ul>
 
@@ -353,13 +353,13 @@
 
                                                 <ul class="list-group mt-3">
                                                     <li class="list-group-item">
-                                                        Cras justo odio
+                                                        Imagen clara y distingible
                                                     </li>
                                                     <li class="list-group-item">
-                                                        Dapibus ac facilisis in
+                                                        Verifica que es el documento correcto
                                                     </li>
                                                     <li class="list-group-item">
-                                                        Morbi leo risus
+                                                        Solo formato PDF
                                                     </li>
                                                 </ul>
 

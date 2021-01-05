@@ -370,6 +370,7 @@
                                     aria-label="Username"
                                     aria-describedby="basic-addon1"
                                     v-model="forPassword.currentPassword"
+                                    required
                                 />
                                 <div class="input-group-prepend">
                                     <span
@@ -393,6 +394,7 @@
                                     aria-label="Username"
                                     aria-describedby="basic-addon2"
                                     v-model="forPassword.newPassword"
+                                    required
                                 />
                                 <div class="input-group-prepend">
                                     <span
@@ -417,6 +419,7 @@
                                     aria-label="Username"
                                     aria-describedby="basic-addon3"
                                     v-model="forPassword.repeatPassword"
+                                    required
                                 />
                                 <div class="input-group-prepend">
                                     <span
@@ -575,9 +578,13 @@ export default {
 
                 await axios.post('https://senati.herokuapp.com/api/update/password.php',dataPass,this.ContentType).then(response=>{
                     console.log(response);
+                        this.makeToast("success","Contraseña","Su contraseña contraseña fue actualizada")
                 }).catch(error=>{
                     console.log(error);
+                    this.makeToast("danger","Contraseña","Las contraseña no fue actualizada")
                 });
+            }else{
+                this.makeToast("warning","Contraseña","Las contraseñas no coinciden")
             }
         },
         async changeNumTelf(){
@@ -587,10 +594,19 @@ export default {
 
                 await axios.post('https://senati.herokuapp.com/api/update/phone.php',dataNum,this.ContentType).then(response=>{
                     console.log(response);
+                    this.makeToast("success","Telefono","El numero de celular fue actualzado exitosamente")
                 }).catch(error=>{
                     console.log(error);
+                    this.makeToast("danger","Telefono","El numero de celular no fue actualizado, intentelo de nuevo")
                 });
-        }
+        },
+        makeToast(variant = null,message,title) {
+            this.$bvToast.toast(title, {
+                title: message,//`Variant ${variant || 'default'}`,
+                variant: variant,
+                solid: true,
+            });
+        },
     },
 };
 </script>
