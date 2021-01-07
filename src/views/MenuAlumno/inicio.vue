@@ -4,14 +4,13 @@
       <div id="content">
         <section id="sec1">
           <div class="contenedor-texto" style="padding-left: 15px">
-            <h2 class="titulo">COMO TITULARME</h2>
+            <h2 class="titulo">¿CÓMO TITULARME?</h2>
 
-            <p class="texto">-Iniciar sesion con tu id de alumno y tu DNI como contraseña.</p>
-            <p class="texto">-Dirigete a la pestaña de "Documentación".</p>
-            <p class="texto">-Sube el documento que te falte.</p>
-            <p class="texto">-Sube el documento que te falte.</p>
-            <p class="texto">-Revisa en la vista previa si es el documento correcto.</p>
-            <p class="texto">-Envía y espera la respuesta de tu coordinador.</p>
+            <p class="texto">- Iniciar sesion con tu id de alumno y tu DNI como contraseña.</p>
+            <p class="texto">- Dirigete a la pestaña de "Documentación".</p>
+            <p class="texto">- Sube el documento que te falte.</p>
+            <p class="texto">- Revisa en la vista previa si es el documento correcto.</p>
+            <p class="texto">- Envía y espera la respuesta de tu coordinador.</p>
           </div>
 
           <iframe
