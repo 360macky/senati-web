@@ -101,7 +101,7 @@
                                                         <h1
                                                             class="text-primary"
                                                         >
-                                                            160
+                                                            {{EstadosAlumno.Activo + "%"}}
                                                         </h1>
                                                         <h5
                                                             class="text-primary"
@@ -138,7 +138,7 @@
                                                         <h1
                                                             class="text-primary"
                                                         >
-                                                            40
+                                                            {{EstadosAlumno.Inactivo + "%"}}
                                                         </h1>
                                                         <h5
                                                             class="text-primary"
@@ -187,7 +187,7 @@
                                                     class="col-lg-12 d-flex align-items-lg-center justify-content-lg-center mb-3"
                                                 >
                                                     <h1 class="text-primary">
-                                                        20%
+                                                        {{EstadoTitulacion.Faltante + '%'}}
                                                     </h1>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -224,7 +224,7 @@
                                                     class="col-lg-12 d-flex align-items-lg-center justify-content-lg-center mb-3"
                                                 >
                                                     <h1 class="text-primary">
-                                                        50%
+                                                        {{EstadoTitulacion.Pendiente + "%"}}
                                                     </h1>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -262,7 +262,7 @@
                                                     class="col-lg-12 d-flex align-items-lg-center justify-content-lg-center mb-3"
                                                 >
                                                     <h1 class="text-primary">
-                                                        30%
+                                                        {{EstadoTitulacion.Aprobado + "%"}}
                                                     </h1>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -302,8 +302,24 @@
 <script>
 import axios from 'axios';
 export default {
-    
+    created(){
+        this.getCountEstadoAlu('A');
+        this.getCountEstadoAlu('F');
+        this.getCountEstadoTitu('N')
+        this.getCountEstadoTitu('P')
+        this.getCountEstadoTitu('A')
+
+    },
     data: () => ({
+        EstadosAlumno:{
+            Activo : 0,
+            Inactivo : 0,
+        },
+        EstadoTitulacion:{
+            Faltante : 0,
+            Pendiente : 0,
+            Aprobado : 0
+        },
         Excel: {
             Excel: null,
             ExcelName: 'Selecciona un archivo',
@@ -333,6 +349,33 @@ export default {
                     console.log(error);
                 });
         },
+        async getCountEstadoAlu(state){
+            var fomData = new FormData();
+            fomData.append('estado',state);
+            axios.post('https://senati.herokuapp.com/api/percentage/estado.php',fomData,this.ContentType).then(response=>{
+                console.log(response)
+                if(state == 'A'){
+                    this.EstadosAlumno.Activo = response.data.porcentaje
+                }else if(state == 'F'){
+                    this.EstadosAlumno.Inactivo = response.data.porcentaje
+                }
+            })
+        },
+        async getCountEstadoTitu(state){
+            var fomData = new FormData();
+            fomData.append('titulacion',state);
+            axios.post('https://senati.herokuapp.com/api/percentage/titulacion.php',fomData,this.ContentType).then(response=>{
+                console.log(response)
+                if(state == 'N'){
+                    this.EstadoTitulacion.Faltante = response.data.porcentaje
+                }else if(state == 'P'){
+                    this.EstadoTitulacion.Pendiente = response.data.porcentaje
+                }
+                else if(state == 'A'){
+                    this.EstadoTitulacion.Aprobado = response.data.porcentaje
+                }
+            })
+        }
     },
 };
 </script>
