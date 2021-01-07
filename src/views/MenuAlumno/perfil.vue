@@ -594,7 +594,7 @@ export default {
 
                 await axios.post('https://senati.herokuapp.com/api/update/phone.php',dataNum,this.ContentType).then(response=>{
                     console.log(response);
-                    this.makeToast("success","Telefono","El numero de celular fue actualzado exitosamente")
+                    this.makeToast("success","Telefono","El numero de celular fue actualizado exitosamente")
                 }).catch(error=>{
                     console.log(error);
                     this.makeToast("danger","Telefono","El numero de celular no fue actualizado, intentelo de nuevo")

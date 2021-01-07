@@ -54,6 +54,7 @@
                                                             handleFileUploadRecibo()
                                                         "
                                                         accept=".pdf"
+                                                        :disabled="Recibo.estado"
                                                     />
                                                     <label
                                                         class="custom-file-label text-left"
@@ -77,6 +78,7 @@
                                                 </ul>
 
                                                 <button
+                                                    v-if="Recibo.estado == false"
                                                     type="submit"
                                                     class="btn btn-info btn-lg mt-3"
                                                     v-on:click="
@@ -84,6 +86,18 @@
                                                     "
                                                 >
                                                     Enviar
+                                                </button>
+                                                <button
+                                                    v-if="Recibo.estado == true"
+                                                    type="submit"
+                                                    class="btn btn-danger btn-lg mt-3 float-right"
+                                                    v-on:click="
+                                                        deleteFile(
+                                                            'RECIBO_PAGO'
+                                                        )
+                                                    "
+                                                >
+                                                    Eliminar
                                                 </button>
                                             </div>
 
@@ -105,6 +119,9 @@
                                                         "
                                                         src="../../assets/senatiLoading.gif"
                                                     />
+                                                    <div v-if="Recibo.estado == false && Recibo.urlRecibo != null && Recibo.urlRecibo != ''">
+                                                        Esta es solo una vista previa, verifique si es el documento correcto.
+                                                    </div>
                                                     <iframe
                                                         v-if="
                                                             this.Recibo.urlRecibo !=
@@ -144,6 +161,7 @@
                                                             handleFileUploadDni()
                                                         "
                                                         accept=".pdf"
+                                                        :disabled="Dni.estado"
                                                     />
                                                     <label
                                                         class="custom-file-label text-left"
@@ -167,6 +185,7 @@
                                                 </ul>
 
                                                 <button
+                                                    v-if="Dni.estado == false"
                                                     type="submit"
                                                     class="btn btn-info btn-lg mt-3"
                                                     v-on:click="
@@ -174,6 +193,19 @@
                                                     "
                                                 >
                                                     Enviar
+                                                </button>
+                                                <!-- Boton de eliminar -->
+                                                <button
+                                                    v-if="Dni.estado == true"
+                                                    type="submit"
+                                                    class="btn btn-danger btn-lg mt-3 float-right"
+                                                    v-on:click="
+                                                        deleteFile(
+                                                            'DNI'
+                                                        )
+                                                    "
+                                                >
+                                                    Eliminar
                                                 </button>
                                             </div>
 
@@ -195,6 +227,9 @@
                                                         "
                                                         src="../../assets/senatiLoading.gif"
                                                     />
+                                                    <div v-if="Dni.estado == false && Dni.urlDni != null && Dni.urlDni != ''">
+                                                        Esta es solo una vista previa, verifique si es el documento correcto.
+                                                    </div>
                                                     <iframe
                                                         v-if="
                                                             this.Dni.urlDni !=
@@ -236,6 +271,7 @@
                                                             handleFileUploadCertidicadoalificaciones()
                                                         "
                                                         accept=".pdf"
+                                                        :disabled="Certificado.estado"
                                                     />
                                                     <label
                                                         class="custom-file-label text-left"
@@ -260,6 +296,7 @@
                                                 </ul>
 
                                                 <button
+                                                    v-if="Certificado.estado == false"
                                                     type="submit"
                                                     class="btn btn-info btn-lg mt-3"
                                                     v-on:click="
@@ -269,6 +306,19 @@
                                                     "
                                                 >
                                                     Enviar
+                                                </button>
+                                                <!-- Boton de eliminar -->
+                                                <button
+                                                    v-if="Certificado.estado == true"
+                                                    type="submit"
+                                                    class="btn btn-danger btn-lg mt-3 float-right"
+                                                    v-on:click="
+                                                        deleteFile(
+                                                            'CERTIFICADO'
+                                                        )
+                                                    "
+                                                >
+                                                    Eliminar
                                                 </button>
                                             </div>
 
@@ -292,6 +342,9 @@
                                                         "
                                                         src="../../assets/senatiLoading.gif"
                                                     />
+                                                    <div v-if="Certificado.estado == false && Certificado.urlCertificado != null && Certificado.urlCertificado !=''">
+                                                        Esta es solo una vista previa, verifique si es el documento correcto.
+                                                    </div>
                                                     <iframe
                                                         v-if="
                                                             this.Certificado
@@ -340,6 +393,7 @@
                                                             handleFileUploadProyecto()
                                                         "
                                                         accept=".pdf"
+                                                        :disabled="Proyecto.estado"
                                                     />
                                                     <label
                                                         class="custom-file-label text-left"
@@ -364,6 +418,7 @@
                                                 </ul>
 
                                                 <button
+                                                    v-if="Proyecto.estado == false"
                                                     type="submit"
                                                     class="btn btn-info btn-lg mt-3"
                                                     v-on:click="
@@ -371,6 +426,19 @@
                                                     "
                                                 >
                                                     Enviar
+                                                </button>
+                                                <!-- Boton de eliminar -->
+                                                <button
+                                                    v-if="Proyecto.estado == true"
+                                                    type="submit"
+                                                    class="btn btn-danger btn-lg mt-3 float-right"
+                                                    v-on:click="
+                                                        deleteFile(
+                                                            'PROYECTO'
+                                                        )
+                                                    "
+                                                >
+                                                    Eliminar
                                                 </button>
                                             </div>
 
@@ -394,6 +462,9 @@
                                                         "
                                                         src="../../assets/senatiLoading.gif"
                                                     />
+                                                    <div v-if="Proyecto.estado == false && Proyecto.urlProyecto != null && Proyecto.urlProyecto !=''">
+                                                        Esta es solo una vista previa, verifique si es el documento correcto.
+                                                    </div>
                                                     <iframe
                                                         v-if="
                                                             this.Proyecto
@@ -533,6 +604,7 @@ export default {
                     console.log(response.data);
                     if(response.data.success == true){
                         this.makeToast("BUENAS NOTICIAS","success",type," se envió correctamente.")
+                        this.getDocument(type)
                     }else{
                         this.makeToast("LO SENTIMOS","danger",type=="RECIBO_PAGO"?"RECIBO DE PAGO":type," ya ha sido enviado anteriormente, no puede enviarlo de nuevo.")
                     }
@@ -615,6 +687,32 @@ export default {
                 solid: true,
             });
         },
+        async deleteFile(type){
+        var formdata = new FormData();
+        formdata.append("id_usuario", localStorage.getItem("codAlu"));
+        formdata.append("tipo_documento", type);
+        await axios.post("https://senati.herokuapp.com/api/delete/",formdata,this.ContentType).then(response=>{
+            console.log(response)
+            if(response.data.success == true){
+                if(type == 'CERTIFICADO'){
+                    this.Certificado.urlCertificado = null;
+                    this.Certificado.estado = false;
+                }else if(type == 'RECIBO_PAGO'){
+                    this.Recibo.urlRecibo = null;
+                    this.Recibo.estado = false;
+                }else if(type == 'DNI'){
+                    this.Dni.urlDni = null;
+                    this.Dni.estado = false;
+                }else if(type == 'PROYECTO'){
+                    this.Proyecto.urlProyecto = null;
+                    this.Proyecto.estado = false;
+                }
+            }
+            
+        }).catch(error=>{
+            console.log(error)
+        })
+    }
     },
 };
 </script>
