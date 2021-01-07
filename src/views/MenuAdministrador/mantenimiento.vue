@@ -1,6 +1,7 @@
 <template>
 <div class="content " >
-  <iframe class="w-100 h-100" src="https://senati.herokuapp.com/api/admin/crud/crud_vista.php"></iframe>
+  <iframe frameBorder="0" class="w-100 h-100" src="https://senati.herokuapp.com/api/admin/crud/crud_vista.php" ></iframe>
+  
 </div>
 </template>
 <style scoped>
