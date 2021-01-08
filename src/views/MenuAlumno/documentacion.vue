@@ -689,7 +689,7 @@ export default {
         },
         async deleteFile(type){
         var formdata = new FormData();
-        formdata.append("id_usuario", localStorage.getItem("codAlu"));
+        formdata.append("id_usuario", localStorage.getItem("UserId"));
         formdata.append("tipo_documento", type);
         await axios.post("https://senati.herokuapp.com/api/delete/",formdata,this.ContentType).then(response=>{
             console.log(response)
