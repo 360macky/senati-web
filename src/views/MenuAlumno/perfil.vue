@@ -477,6 +477,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <form @submit.prevent="changeNumTelf">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="">Nuevo teléfono:</label>
@@ -489,9 +490,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success">
-                            Guardar
-                        </button>
+                        <input type="submit" class="btn btn-success" value="Guardar" data-dismiss="">
+                            <!-- Guardar -->
+                        <!-- </button> -->
                         <button
                             type="button"
                             class="btn btn-danger"
@@ -500,6 +501,7 @@
                             Cancelar
                         </button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -588,6 +590,7 @@ export default {
             }
         },
         async changeNumTelf(){
+            console.log("ejecutando");
             var dataNum  = new FormData();
                 dataNum.append('id_usuario', localStorage.getItem("codAlu"));
                 dataNum.append('new_password', this.forNumTelf.numTelefono);
@@ -599,6 +602,7 @@ export default {
                     console.log(error);
                     this.makeToast("danger","Telefono","El numero de celular no fue actualizado, intentelo de nuevo")
                 });
+                document.getElementById('id03').modal('hide');
         },
         makeToast(variant = null,message,title) {
             this.$bvToast.toast(title, {

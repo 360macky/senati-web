@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- Table -->
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-lg-12">
                         <div v-if="alumnos != null" class="card">
                             <div class="card-body">
@@ -121,7 +121,7 @@
                                                     "
                                                 >
                                                     <div
-                                                        class="modal-dialog  modal-lg"
+                                                        class="modal-dialog modal-lg"
                                                         role="document"
                                                     >
                                                         <div
@@ -139,15 +139,16 @@
                                                                 respectivo
                                                             </div>
                                                             <iframe
-                                                                width="100%" height="600"
+                                                                width="100%"
+                                                                height="600"
                                                                 :src="
                                                                     alumno.url_dni
                                                                 "
                                                                 frameborder="0"
                                                             >
-                                                            <div class="h-100">
-
-                                                            </div>
+                                                                <div
+                                                                    class="h-100"
+                                                                ></div>
                                                             </iframe>
                                                         </div>
                                                     </div>
@@ -161,12 +162,14 @@
                                                         type="checkbox"
                                                         class="form-check-input"
                                                     />
-                                                    <a data-toggle="modal"
+                                                    <a
+                                                        data-toggle="modal"
                                                         :data-target="
                                                             '.certificado' +
                                                             alumno.id_usu
-                                                        ">
-                                                    Ver
+                                                        "
+                                                    >
+                                                        Ver
                                                     </a>
                                                 </div>
                                                 <div
@@ -180,7 +183,7 @@
                                                     aria-hidden="true"
                                                 >
                                                     <div
-                                                        class="modal-dialog  modal-lg"
+                                                        class="modal-dialog modal-lg"
                                                         role="document"
                                                     >
                                                         <div
@@ -198,15 +201,16 @@
                                                                 respectivo
                                                             </div>
                                                             <iframe
-                                                                width="100%" height="600"
+                                                                width="100%"
+                                                                height="600"
                                                                 :src="
                                                                     alumno.url_certificado
                                                                 "
                                                                 frameborder="0"
                                                             >
-                                                            <div class="h-100">
-
-                                                            </div>
+                                                                <div
+                                                                    class="h-100"
+                                                                ></div>
                                                             </iframe>
                                                         </div>
                                                     </div>
@@ -220,12 +224,14 @@
                                                         type="checkbox"
                                                         class="form-check-input"
                                                     />
-                                                    <a data-toggle="modal"
+                                                    <a
+                                                        data-toggle="modal"
                                                         :data-target="
                                                             '.proyecto' +
                                                             alumno.id_usu
-                                                        ">
-                                                    Ver
+                                                        "
+                                                    >
+                                                        Ver
                                                     </a>
                                                 </div>
                                                 <div
@@ -239,7 +245,7 @@
                                                     aria-hidden="true"
                                                 >
                                                     <div
-                                                        class="modal-dialog  modal-lg"
+                                                        class="modal-dialog modal-lg"
                                                         role="document"
                                                     >
                                                         <div
@@ -257,15 +263,16 @@
                                                                 respectivo
                                                             </div>
                                                             <iframe
-                                                                width="100%" height="600"
+                                                                width="100%"
+                                                                height="600"
                                                                 :src="
                                                                     alumno.url_proyecto
                                                                 "
                                                                 frameborder="0"
                                                             >
-                                                            <div class="h-100">
-
-                                                            </div>
+                                                                <div
+                                                                    class="h-100"
+                                                                ></div>
                                                             </iframe>
                                                         </div>
                                                     </div>
@@ -286,8 +293,29 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
+        </div>
+        <!-- Paginacion -->
+        <div class="overflow-auto">
+            <b-pagination
+                ref="paginacion"
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-table"
+                :localNumberOfPages="rows"
+                :input="alerta()"
+            ></b-pagination>
+            <p class="mt-3">Current Page: {{ currentPage }}</p>
+
+            <b-table
+                id="my-table"
+                :items="alumnos"
+                :per-page="perPage"
+                :current-page="currentPage"
+                small
+            ></b-table>
         </div>
     </div>
 </template>
@@ -304,8 +332,25 @@ export default {
         carreras: null,
         alumnos: null,
         ContentType: { headers: { 'Content-Type': 'multipart/form-data' } },
+        perPage: 10,
+        currentPage: null,
+        rows: null,
+        items: [
+            { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
+            { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
+            { id: 3, first_name: 'Barney', last_name: 'Rubble' },
+            { id: 4, first_name: 'Betty', last_name: 'Rubble' },
+            { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
+            { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
+            { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
+            { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
+            { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
+        ],
     }),
     methods: {
+        recargar(){
+            this.$root.$emit('bv::refresh::table', 'my-table')
+        },
         async getCarreras() {
             var config = {
                 method: 'get',
@@ -322,35 +367,67 @@ export default {
                 });
         },
         async alerta() {
-            var carreraId = document.getElementById('exampleFormControlSelect1')
-                .value;
-            if (carreraId == null) {
-                carreraId = 1;
-            }
-            var dataForm = new FormData();
-            dataForm.append('id_carrera', carreraId);
-            dataForm.append('rows_quantity', 10);
-            dataForm.append('page_number', 1);
-            document.getElementById('option-disable').disabled = true;
-            // document.getElementById('option-disable').value);
-            console.log(
-                document.getElementById('exampleFormControlSelect1').value
-            );
+            if (this.currentPage != null && document.getElementById(
+                    'exampleFormControlSelect1'
+                ).value != (null || "")) {
+                var carreraId = document.getElementById(
+                    'exampleFormControlSelect1'
+                ).value;
+                if (this.carreras == null) {
+                    carreraId = 1;
+                }
+                var dataForm = new FormData();
+                dataForm.append('id_carrera', carreraId);
+                dataForm.append('rows_quantity', 10);
+                dataForm.append(
+                    'page_number',
+                    this.currentPage == null ? 1 : this.currentPage
+                );
+                document.getElementById('option-disable').disabled = true;
+                // document.getElementById('option-disable').value);
+                console.log(
+                    document.getElementById('exampleFormControlSelect1').value
+                );
+                console.log('Pagina Actual: ' + this.currentPage);
 
-            await axios
-                .post(
-                    'https://senati.herokuapp.com/api/careers-students/',
-                    dataForm,
-                    this.ContentType
-                )
-                .then((response) => {
-                    console.log(response);
-                    this.alumnos = response.data.filas;
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                await axios
+                    .post(
+                        'https://senati.herokuapp.com/api/careers-students/',
+                        dataForm,
+                        this.ContentType
+                    )
+                    .then((response) => {
+                        console.log(response);
+                        if (this.currentPage > 1) {
+                            for (let i = 0; i < ((this.currentPage-1)*this.perPage); i++) {
+                                this.alumnos[i] = {i : "relleno"};
+                            }
+                            console.log("RELLENO: "+this.alumnos)
+                            for(var i = 0; i<(response.data.filas).length; i++){
+                            this.alumnos[(this.currentPage-1)*this.perPage+i] = response.data.filas[i]
+                            }
+                            console.log("Alumnos: "+this.alumnos);
+                        }else{
+                            this.alumnos = response.data.filas;
+                        }
+                        //
+                        
+                        
+                        this.rows = response.data.CantidadHojas * this.perPage;
+                        console.log(this.alumnos);
+                        console.log(this.rows);
+                        this.recargar();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
         },
+    },
+    computed: {
+        //   rows() {
+        //     return this.items.length
+        //   }
     },
 };
 </script>

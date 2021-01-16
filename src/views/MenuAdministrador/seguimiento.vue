@@ -40,9 +40,9 @@
                                 </button>
                             </div>
                             <div class="col-lg-4 mt-1">
-                                <button class="btn btn-success btn-block">
+                                <a href="https://senati.herokuapp.com/api/admin/crud/xlsfile.php" class="btn btn-success btn-block" >
                                     Descargar Excel
-                                </button>
+                                </a>
                             </div>
                             <div class="col-lg-4 mt-1">
                                 <button class="btn btn-warning btn-block">
@@ -101,7 +101,7 @@
                                                         <h1
                                                             class="text-primary"
                                                         >
-                                                            {{EstadosAlumno.Activo + "%"}}
+                                                            {{EstadosAlumno.Activo }}
                                                         </h1>
                                                         <h5
                                                             class="text-primary"
@@ -138,7 +138,7 @@
                                                         <h1
                                                             class="text-primary"
                                                         >
-                                                            {{EstadosAlumno.Inactivo + "%"}}
+                                                            {{EstadosAlumno.Inactivo}}
                                                         </h1>
                                                         <h5
                                                             class="text-primary"
@@ -355,9 +355,9 @@ export default {
             axios.post('https://senati.herokuapp.com/api/percentage/estado.php',fomData,this.ContentType).then(response=>{
                 console.log(response)
                 if(state == 'A'){
-                    this.EstadosAlumno.Activo = response.data.porcentaje
+                    this.EstadosAlumno.Activo = response.data.quantity
                 }else if(state == 'F'){
-                    this.EstadosAlumno.Inactivo = response.data.porcentaje
+                    this.EstadosAlumno.Inactivo = response.data.quantity
                 }
             })
         },

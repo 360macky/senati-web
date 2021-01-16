@@ -48,7 +48,7 @@
 //import auth from "@/logic/auth";
 //import axios from "axios";
 
-import { mapState, mapMutations} from "vuex";
+import { mapActions,mapState, } from "vuex";
 import axios from "axios";
 export default {
     name: 'Login',
@@ -74,7 +74,7 @@ export default {
         success : false
     }),
     methods: {
-        ...mapMutations(['login']),
+        ...mapActions(['guardarUsuario']),
         //...mapActions(['SetToken']),
         async logear() {
             this.estado = "procesando";
@@ -97,14 +97,14 @@ export default {
                 localStorage.setItem("telefono",response.data.userData.telf_usu);
                 localStorage.setItem("codAlu",response.data.userData.id_s);
                 localStorage.setItem("rol",response.data.userData.rol.rol);
-
+                const token = response.data.token;
                 //state.fullName = response.data.userData.nom_usu + response.data.userData.ape_usu;
                 //state.rol = response.data.userData.rolid;
                 //state.session = response.data.success;
                 //state.token = response.data.token;
                 //state.correo = response.data.email_usu;
                 console.log(response);
-                
+                this.guardarUsuario(token);
                 if(response.data.userData.rol.rol == "student"){
                     this.$router.push("/MenuAlumno/Inicio")
                 }else{
