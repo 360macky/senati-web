@@ -19,7 +19,7 @@
                                     <label for="exampleFormControlSelect1"
                                         >Carrera:</label
                                     >
-                                    <b-form-select v-model="seleccionado" :options="carreras"></b-form-select>
+                                    <b-form-select v-model="seleccionado" :options="carreras" @input="recargar"></b-form-select>
                                     <!-- <select
                                         class="form-control"
                                         id="exampleFormControlSelect1"
@@ -319,8 +319,8 @@
                 small
             ></b-table> -->
         </div>
-        <div class="container">
-            <b-card class="mb-4" title="Tolvas">
+        <div class="container" v-if="seleccionado != null">
+            <b-card class="mb-4" :title="'Alumnos de la carrera: '+seleccionado.value ">
                 <b-table
                     ref="custom-table"
                     class="vuetable"
@@ -428,7 +428,7 @@ export default {
                     console.log(response.data);
                     items.push({value:null, text:'Seleccionar', disabled:true});
                     response.data.forEach(element => {
-                        items.push({value:element.id,text:element.nombre})
+                        items.push({value:{id : element.id, value : element.nombre},text:element.nombre})
                     });
                     this.carreras = items;
                     console.log(this.carreras)
@@ -449,8 +449,8 @@ export default {
             //let promise = axios.get(apiUrl + '/cakes/fordatatable', { params: params })
             //var carreraId = document.getElementById('exampleFormControlSelect1').value;
             var dataForm = new FormData();
-            console.log("Valor seleccionado: "+this.selected.value==null?1:1)
-            dataForm.append('id_carrera', this.selected.value==null?1:1);
+            console.log("Carrera seleccionada: "+this.seleccionado.id)
+            dataForm.append('id_carrera',this.seleccionado.id);
             dataForm.append('rows_quantity', 10);
             dataForm.append('page_number',this.currentPage == null ? 1 : this.currentPage);
 
