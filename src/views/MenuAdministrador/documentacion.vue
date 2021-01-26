@@ -19,10 +19,12 @@
                                     <label for="exampleFormControlSelect1"
                                         >Carrera:</label
                                     >
-                                    <select
+                                    <b-form-select v-model="seleccionado" :options="carreras"></b-form-select>
+                                    <!-- <select
                                         class="form-control"
                                         id="exampleFormControlSelect1"
-                                        v-on:change="alerta()"
+                                        
+                                        :value="selected.value"
                                     >
                                         <option id="option-disable">
                                             Seleccionar
@@ -34,7 +36,7 @@
                                         >
                                             {{ carrera.nombre }}
                                         </option>
-                                    </select>
+                                    </select> -->
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -298,7 +300,7 @@
         </div>
         <!-- Paginacion -->
         <div class="overflow-auto">
-            <b-pagination
+            <!-- <b-pagination
                 ref="paginacion"
                 v-model="currentPage"
                 :total-rows="rows"
@@ -315,7 +317,62 @@
                 :per-page="perPage"
                 :current-page="currentPage"
                 small
-            ></b-table>
+            ></b-table> -->
+        </div>
+        <div class="container">
+            <b-card class="mb-4" title="Tolvas">
+                <b-table
+                    ref="custom-table"
+                    class="vuetable"
+                    sort-by="title"
+                    sort-desc.sync="false"
+                    @row-selected="rowSelected"
+                    selectable
+                    :select-mode="bootstrapTable.selectMode"
+                    :current-page="currentPage"
+                    selectedVariant="primary"
+                    :fields="bootstrapTable.fields"
+                    :items="dataProvider"
+                    id="table"
+                >
+                h
+                    <template slot="status" slot-scope="data">
+                        <b-badge
+                            class="mb-1"
+                            variant="danger"
+                            >{{ data.value }}</b-badge
+                        >
+                    </template>
+                </b-table>
+                <b-pagination
+                    size="sm"
+                    align="center"
+                    :total-rows="totalRows"
+                    :per-page="perPage"
+                    v-model="currentPage"
+                >
+                    <template v-slot:next-text>
+                        <i class="simple-icon-arrow-right" />
+                    </template>
+                    <template v-slot:prev-text>
+                        <i class="simple-icon-arrow-left" />
+                    </template>
+                    <template v-slot:first-text>
+                        <i class="simple-icon-control-start" />
+                    </template>
+                    <template v-slot:last-text>
+                        <i class="simple-icon-control-end" />
+                    </template>
+                </b-pagination>
+
+                <b-alert
+                    v-if="bootstrapTable.selected.length > 0"
+                    show
+                    variant="primary"
+                    >Selected Items :<br />
+                    <pre>{{ bootstrapTable.selected }}</pre>
+                </b-alert>
+            </b-card>
         </div>
     </div>
 </template>
@@ -324,32 +381,39 @@ import axios from 'axios';
 
 export default {
     created() {
-        if (this.carreras == null) {
-            this.getCarreras();
-        }
+        this.getCarreras();
     },
     data: () => ({
-        carreras: null,
+        carreras: [{value:null, text:'Cargando...'}],
+        seleccionado: null,
         alumnos: null,
         ContentType: { headers: { 'Content-Type': 'multipart/form-data' } },
         perPage: 10,
-        currentPage: null,
-        rows: null,
-        items: [
-            { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-            { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-            { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-            { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-            { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-            { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-            { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-            { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-            { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-        ],
+        currentPage: 1,
+        totalRows: 2,
+        selected:{
+            value : null
+        },
+        bootstrapTable: {
+        selected: [],
+        selectMode: 'multi',
+        fields: [  
+          { key: 'id_s', label: 'Id', sortDirection: 'desc', tdClass: 'list-item-heading' },
+          { key: 'nom_usu', label: 'Nombres', tdClass: 'text-muted' },
+          { key: 'ape_usu', label: 'Apellidos', tdClass: 'text-muted' },
+          { key: 'email_usu', label: 'Correo Electronico', tdClass: 'text-muted' },
+          { key: 'telf_usu', label: 'Telefono', tdClass: 'text-muted' },
+          { key: 'url_dni', label: 'DNI', tdClass: 'text-muted' },
+          { key: 'url_certificado', label: 'Certificado de Estudios', tdClass: 'text-muted' },
+          { key: 'url_proyecto', label: 'Proyecto', tdClass: 'text-muted' },
+          { key: 'url_recibo_pago', label: 'Recibo', tdClass: 'text-muted' },
+          { key: 'estadoTransporte.nomEstTrans', label: 'Acciones', tdClass: 'text-muted' }
+        ]
+      },
     }),
     methods: {
-        recargar(){
-            this.$root.$emit('bv::refresh::table', 'my-table')
+        recargar() {
+            this.$root.$emit('bv::refresh::table', 'table');
         },
         async getCarreras() {
             var config = {
@@ -357,72 +421,113 @@ export default {
                 url: 'https://senati.herokuapp.com/api/careers/',
                 headers: {},
             };
+            let items=[];
+            console.log("Obteniendo Carreras...")
             await axios(config)
                 .then((response) => {
                     console.log(response.data);
-                    this.carreras = response.data;
+                    items.push({value:null, text:'Seleccionar', disabled:true});
+                    response.data.forEach(element => {
+                        items.push({value:element.id,text:element.nombre})
+                    });
+                    this.carreras = items;
+                    console.log(this.carreras)
+                    //this.carreras = response.data;
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
-        async alerta() {
-            if (this.currentPage != null && document.getElementById(
-                    'exampleFormControlSelect1'
-                ).value != (null || "")) {
-                var carreraId = document.getElementById(
-                    'exampleFormControlSelect1'
-                ).value;
-                if (this.carreras == null) {
-                    carreraId = 1;
-                }
-                var dataForm = new FormData();
-                dataForm.append('id_carrera', carreraId);
-                dataForm.append('rows_quantity', 10);
-                dataForm.append(
-                    'page_number',
-                    this.currentPage == null ? 1 : this.currentPage
-                );
-                document.getElementById('option-disable').disabled = true;
-                // document.getElementById('option-disable').value);
-                console.log(
-                    document.getElementById('exampleFormControlSelect1').value
-                );
-                console.log('Pagina Actual: ' + this.currentPage);
-
-                await axios
-                    .post(
-                        'https://senati.herokuapp.com/api/careers-students/',
-                        dataForm,
-                        this.ContentType
-                    )
-                    .then((response) => {
-                        console.log(response);
-                        if (this.currentPage > 1) {
-                            for (let i = 0; i < ((this.currentPage-1)*this.perPage); i++) {
-                                this.alumnos[i] = {i : "relleno"};
-                            }
-                            console.log("RELLENO: "+this.alumnos)
-                            for(var i = 0; i<(response.data.filas).length; i++){
-                            this.alumnos[(this.currentPage-1)*this.perPage+i] = response.data.filas[i]
-                            }
-                            console.log("Alumnos: "+this.alumnos);
-                        }else{
-                            this.alumnos = response.data.filas;
-                        }
-                        //
-                        
-                        
-                        this.rows = response.data.CantidadHojas * this.perPage;
-                        console.log(this.alumnos);
-                        console.log(this.rows);
-                        this.recargar();
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            }
+        onPaginationData(paginationData) {
+            this.$refs.pagination.setPaginationData(paginationData);
         },
+        rowSelected(items) {
+            this.bootstrapTable.selected = items;
+        },
+        dataProvider() {
+            //const params = this.apiParamsConverter(ctx)
+            //let promise = axios.get(apiUrl + '/cakes/fordatatable', { params: params })
+            //var carreraId = document.getElementById('exampleFormControlSelect1').value;
+            var dataForm = new FormData();
+            console.log("Valor seleccionado: "+this.selected.value==null?1:1)
+            dataForm.append('id_carrera', this.selected.value==null?1:1);
+            dataForm.append('rows_quantity', 10);
+            dataForm.append('page_number',this.currentPage == null ? 1 : this.currentPage);
+
+            console.log('Pagina Actual: ' + this.currentPage);
+            let promise = axios.post('https://senati.herokuapp.com/api/careers-students/',dataForm,this.ContentType);
+            return promise
+                .then((result) => result.data)
+                .then((data) => {
+                    let items = data.filas;
+                    //items = data.filas;
+                    this.totalRows = data.cantidadRegistrosEnDocumentacion;
+                    console.log(items)
+                    console.log(data)
+                    return items;
+                    
+                })
+                .catch((_error) => {
+                    console.log(_error);
+                    return [];
+                });
+        },
+        // async alerta() {
+        //     if (this.currentPage != null && document.getElementById(
+        //             'exampleFormControlSelect1'
+        //         ).value != (null || "")) {
+        //         var carreraId = document.getElementById(
+        //             'exampleFormControlSelect1'
+        //         ).value;
+        //         if (this.carreras == null) {
+        //             carreraId = 1;
+        //         }
+        //         var dataForm = new FormData();
+        //         dataForm.append('id_carrera', carreraId);
+        //         dataForm.append('rows_quantity', 10);
+        //         dataForm.append(
+        //             'page_number',
+        //             this.currentPage == null ? 1 : this.currentPage
+        //         );
+        //         document.getElementById('option-disable').disabled = true;
+        //         // document.getElementById('option-disable').value);
+        //         console.log(
+        //             document.getElementById('exampleFormControlSelect1').value
+        //         );
+        //         console.log('Pagina Actual: ' + this.currentPage);
+
+        //         await axios
+        //             .post(
+        //                 'https://senati.herokuapp.com/api/careers-students/',
+        //                 dataForm,
+        //                 this.ContentType
+        //             )
+        //             .then((response) => {
+        //                 console.log(response);
+        //                 if (this.currentPage > 1) {
+        //                     for (let i = 0; i < ((this.currentPage-1)*this.perPage); i++) {
+        //                         this.alumnos[i] = {i : "relleno"};
+        //                     }
+        //                     console.log("RELLENO: "+this.alumnos)
+        //                     for(var i = 0; i<(response.data.filas).length; i++){
+        //                     this.alumnos[(this.currentPage-1)*this.perPage+i] = response.data.filas[i]
+        //                     }
+        //                     console.log("Alumnos: "+this.alumnos);
+        //                 }else{
+        //                     this.alumnos = response.data.filas;
+        //                 }
+        //                 //
+
+        //                 this.rows = response.data.CantidadHojas * this.perPage;
+        //                 console.log(this.alumnos);
+        //                 console.log(this.rows);
+        //                 this.recargar();
+        //             })
+        //             .catch((error) => {
+        //                 console.log(error);
+        //             });
+        //     }
+        // },
     },
     computed: {
         //   rows() {
